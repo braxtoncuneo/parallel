@@ -6,6 +6,7 @@ Data collection is important in software development, especially parallel so
 
 ## Units
 
+Most of the measurements we will be looking at will have some associated units. Without those units, interpreting data 
 
 
 ## Table Conventions

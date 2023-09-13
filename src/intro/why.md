@@ -1,6 +1,8 @@
 # Why Parallelism?
 
 
+
+
 ## Moore's Law
 
 

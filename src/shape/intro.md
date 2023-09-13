@@ -7,7 +7,7 @@ For example, both **Amdahl's Law** and **Gustafson's Law** model programs in ter
 
 In the real world, not all programs can be sliced neatly into such clean portions with such idealized properties. Consider the following:
 
-- If a program's execution is performed through a set of **N** indivisible operations, those actions can spread across at most **N** pieces of hardware. Even if those **N** actions could all be performed independently, we can't keep getting speedups by throwing more parallelism at the problem because we cannot break up the program into smaller pieces.
+- If a program's execution is performed through a set of **N** indivisible operations, those actions can spread across at most **N** pieces of hardware. Even if those actions could all be performed independently, we can't keep getting speedups by throwing more parallelism at the problem because we cannot break up the program into smaller pieces.
 - If a program's execution involves some unpredictable latency or depends upon unpredictable information, the "best" way to distribute operations across hardware may also be unpredictable.
 - If some operations performed by a program use significant amounts of a limited resource, it may be costly, slow, or completely impossible to execute combinations of these actions in parallel.
 
@@ -17,7 +17,7 @@ To address these nuances, this chapter is dedicated to outlining the space of pr
 
 ## Chapter Structure
 
-- [Dependency Graphs](./shape/graphs.md) - How we will describe processing patterns
+- [Dependency Graphs](./shape/graphs.md) - A reframing of parallel processing patterns
     - [Embarrasing Parallelism](./shape/embarassing.md) - When parallelism is easy
     - [Forking and Joining](./shape/fork_and_join.md) - When parallelism is interesting
     - [Reduction](./shape/reduction.md) - We hope you like math (pt 1)

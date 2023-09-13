@@ -1,4 +1,10 @@
 # Course Practices
 
-- [Data Collection](./scripting.md)
-- [Showing Data](./showing_data.md)
+## Chapter Premise
+
+
+
+## Chapter Structure
+
+- [Data Collection](./collecting_data.md)
+- [Showing Data](./showing_data.md) 
