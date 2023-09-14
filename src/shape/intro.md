@@ -2,7 +2,7 @@
 
 ## Chapter Premise
 
-As we discussed in the [intro chapter](../intro/why.md), the effects of parallelism depend upon the nature of the thing being parallelized.
+As we discussed in the [groundwork chapter](../intro/laws.md), the effects of parallelism depend upon the nature of the thing being parallelized.
 For example, both **Amdahl's Law** and **Gustafson's Law** model programs in terms of parallel and serial portions, one which experiences perfect speedup from parallelism, and another which experiences no speedup.
 
 In the real world, not all programs can be sliced neatly into such clean portions with such idealized properties. Consider the following:
@@ -23,6 +23,6 @@ To address these nuances, this chapter is dedicated to outlining the space of pr
     - [Reduction](./shape/reduction.md) - We hope you like math (pt 1)
 - [Methods](./shape/methods.md)
     - [Data decomposition](./shape/data_decomp.md) - When your data are embarrasing
-    - [Task decomposition](./shape/data_decomp.md) - When your jobs are embarrasing
+    - [Task decomposition](./shape/task_decomp.md) - When your jobs are embarrasing
     - [Divide and Conquer](./shape/divide_and_conquer.md) - Applying imperialism to your problems
     - [Map and reduce](./shape/map_and_reduce.md) - We hope you like math (pt 2)
