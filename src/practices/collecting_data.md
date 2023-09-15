@@ -9,6 +9,8 @@ Factors such as the amount of data processed, the resources allocated, or the di
 
 
 ### Getting the Current Time
+
+
 C++ has more time functions than you can shake a stick at, and they all measure slightly different things.
 
 
@@ -61,7 +63,14 @@ Here's an example that uses `steady_clock`:
 {{#include loading_bar.cpp}}
 ```
 
+```console
+<!-- cmdrun g++ loading_bar.cpp -o loading_bar.exe;  ./loading_bar.exe -->
+```
 
+```admonish info
+
+testing 1 2 3 {{footnote:Blah}}
+```
 
 
 ## Calculating Performance and Assigning Units
