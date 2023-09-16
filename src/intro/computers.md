@@ -3,6 +3,7 @@
 ## The Components of a Computer
 
 
+
 ## The Instruction Cycle
 
 

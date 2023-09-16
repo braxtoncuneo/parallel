@@ -6,8 +6,7 @@ src = "src"
 title = "Parallel Computing"
 
 
-
-
+[preprocessor.presentation-preprocessor]
 
 [preprocessor.admonish]
 command = "mdbook-admonish"
@@ -20,3 +19,6 @@ additional-css = ["./mdbook-admonish.css"]
 [preprocessor.footnote]
 
 [preprocessor.cmdrun]
+
+[preprocessor.hide]
+hide = true

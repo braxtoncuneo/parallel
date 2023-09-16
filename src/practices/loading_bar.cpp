@@ -18,9 +18,9 @@ int main() {
     time_point start_time = steady_clock::now();
 
     // A fun animation while we wait
-    for(int i=0; i<=30; i++){
+    for(int i=0; i<40; i++){
         std::cout << '|';
-        sleep_for(milliseconds(100));
+        sleep_for(milliseconds(10));
         std::cout.flush();
     }
 

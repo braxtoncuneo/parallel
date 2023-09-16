@@ -22,13 +22,15 @@ This book also assumes that you know C++, which will be used for most included c
 Some other programming languages are shown, but in-depth knowledge of them isn't crucial.
 
 
+
 ## How to Read this Book
 
-This book is intended to be read (mostly) sequentially, but is also structured to act as a quick reference for your future parallel endeavors.
-If you are not reading this book for the Parallel Computing course at Seattle University, you may feel free to skip the [Course Practices](./practices/intro.md) section.
+This book is ordered to approximate the order subjects will be covered in the course, but it is also structured as a quick reference.
+Feel free to read wherever your curiosity takes you.
 
-If you read this book non-sequentially, it is nonetheless recommended your read a chapter's main page before reading its subchapters.
-These main pages are provided to introduce the chapter's premise and organization.
+This book is a living document, so parts may change or disappear as the term progresses or as the course is refined.
+
+If you are not reading this book for the Parallel Computing course at Seattle University, you may feel free to skip the [Course Practices](./practices/intro.md) section.
 
 
 
