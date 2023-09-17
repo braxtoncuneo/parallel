@@ -1,0 +1,20 @@
+<style>
+:root { --content-max-width: 90%; }
+body { font-size: 4rem; }
+.segment_container { display: flex; flex-direction: row; }
+.segment { margin-left: 2%; margin-right: 2%; flex: 1; }
+</style>
+<div class="segment_container">
+<div class="segment">
+
+# Collecting Data
+[slide](./collecting_intro.md)
+
+Software rarely behaves exactly as expected during development. That's why software developers write tests to double-check the correctness of their code.
+That is also why it's important to test the performance of software as different parallelization strategies are applied.
+
+Factors such as the amount of data processed, the resources allocated, or the distribution of work can affect the speed of a program.
+With performance metrics, the relationship between a program's inputs and its processing throughput can be better understood.
+Furthermore, when performance trends defy expectations, they reveal misunderstandings about the tested software.
+</div>
+</div>

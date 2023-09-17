@@ -1,0 +1,48 @@
+<style>
+:root { --content-max-width: 90%; }
+body { font-size: 4rem; }
+.segment_container { display: flex; flex-direction: row; }
+.segment { margin-left: 2%; margin-right: 2%; flex: 1; }
+</style>
+<div class="segment_container">
+<div class="segment">
+
+<!--slider split-->
+
+## Getting Timing Info
+
+</div>
+</div>
+<div class="segment_container">
+<div class="segment">
+
+<!--slider row-split-->
+
+> [C-style functions from \<time.h\> aka \<ctime\> ](https://en.cppreference.com/w/c/chrono)
+> 
+> - `clock_t clock()`
+> - `time_t  time()`
+>
+> [UNIX-style functions from \<unistd\>](https://linux.die.net/man/7/time)
+> - `time_t time(time_t *t)`
+> - `int ftime(struct timeb *tp)`
+> - `int gettimeofday(struct timeval *tv, struct timezone *tz)`
+> - `int clock_gettime(clockid_t clk_id, struct timespec *tp)`
+</div>
+<div class="segment">
+
+<!--slider cell-split-->
+>
+> [C++-style classes from \<chrono\>](https://en.cppreference.com/w/cpp/chrono)
+> 
+> - `system_clock`
+> - `steady_clock`
+> - `high_resolution_clock`
+> - `utc_clock`
+> - `tai_clock`
+> - `gps_clock`
+> - `file_clock`
+
+
+</div>
+</div>

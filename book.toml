@@ -5,9 +5,10 @@ multilingual = false
 src = "src"
 title = "Parallel Computing"
 
+[preprocessor.slider_filt]
+command = "python3 ./src/slider_filt.py"
+before = [ "admonish", "footnote", "cmdrun", "hide", "links" ]
 
-
-[preprocessor.presentation-preprocessor]
 
 [preprocessor.admonish]
 command = "mdbook-admonish"

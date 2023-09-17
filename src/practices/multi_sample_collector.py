@@ -11,7 +11,9 @@ for i in add_counts:
         minimum = math.inf
         for k in range(sample_count):
             cmd = [ "./my_program.exe", str(i), str(j) ]
-            output_str = subprocess.run(cmd,stdout=subprocess.PIPE).stdout.decode('utf-8')
+            output_str = subprocess \
+                .run(cmd,stdout=subprocess.PIPE) \
+                .stdout.decode('utf-8')
             time = float(output_str)
             minimum = min(minimum,time)
         print(f"{minimum},",end="")

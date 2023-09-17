@@ -1,0 +1,17 @@
+<style>
+:root { --content-max-width: 90%; }
+body { font-size: 4rem; }
+.segment_container { display: flex; flex-direction: row; }
+.segment { margin-left: 2%; margin-right: 2%; flex: 1; }
+</style>
+<div class="segment_container">
+<div class="segment">
+
+<!--slider split-->
+
+The Original Data:
+
+![A plot of the originally collected data. The trend-lines look jagged.](../../../practices/single.png "The Original Data")
+
+</div>
+</div>

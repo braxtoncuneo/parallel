@@ -1,0 +1,44 @@
+<style>
+:root { --content-max-width: 90%; }
+body { font-size: 4rem; }
+.segment_container { display: flex; flex-direction: row; }
+.segment { margin-left: 2%; margin-right: 2%; flex: 1; }
+</style>
+<div class="segment_container">
+<div class="segment">
+
+<!--slider split-->
+
+
+<div style="font-size: 0.6em">
+
+````admonish example title="Example: Measuring a Time Duration with **steady_clock**"
+
+```cpp
+{{#include ../../../practices/loading_bar.cpp}}
+```
+````
+
+</div>
+
+</div>
+<div class="segment">
+
+<!--slider cell-split-->
+
+The program's output:
+
+```console
+<!-- cmdrun g++ ../../../practices/loading_bar.cpp -o loading_bar.exe;  ./loading_bar.exe -->
+```
+
+### Other Tips
+- Avoid print statements during the timed portion of a program
+- Loading bars are okay for long running programs as long as bar updates are infrequent
+- `std::this_thread::sleep_for` is useful for artificial delays, which can be useful for modelling hypothetical latency
+
+
+
+
+</div>
+</div>
