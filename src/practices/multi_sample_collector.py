@@ -18,6 +18,3 @@ for i in add_counts:
             minimum = min(minimum,time)
         print(f"{minimum},",end="")
     print()
- 
-        
-

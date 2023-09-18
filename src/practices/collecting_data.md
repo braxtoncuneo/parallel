@@ -1,11 +1,33 @@
 # Collecting Data
 
+<!--slider web-->
 Software rarely behaves exactly as expected during development. That's why software developers write tests to double-check the correctness of their code.
 That is also why it's important to test the performance of software as different parallelization strategies are applied.
 
 Factors such as the amount of data processed, the resources allocated, or the distribution of work can affect the speed of a program.
 With performance metrics, the relationship between a program's inputs and its processing throughput can be better understood.
 Furthermore, when performance trends defy expectations, they reveal misunderstandings about the tested software.
+
+<!--slider slide-->
+<!--slider row-split-->
+<div style="font-size=4em;">
+
+Projects for this course require you collect performance data for your programs
+
+Collecting this data is important because:
+
+- It gives you a better understanding of how different parameters effect performance
+- It helps you find and fix problems with your code
+- It gives you practice for your future career
+
+There are many common difficulties students face when collecting data.
+
+This document is here to help you avoid them.
+
+</div>
+<!--slider cell-split-->
+
+<!--slider both-->
 
 <!--slider split-->
 
@@ -41,21 +63,31 @@ C++ has more time functions than you can shake a stick at, and they all measure 
 
 <!--slider split-->
 
-To save you the trouble of figuring this out:
+## To save you the trouble of figuring this out:
+
+<!--slider row-split-->
 
 - `clock` Does not account for time when the process is blocked. {{footnote: More accurately, it ["returns the approximate processor time used by the process since the beginning of an implementation-defined era related to the program's execution"](https://en.cppreference.com/w/c/chrono/clock)}}
 - `time`{{footnote: both C and UNIX}} only measures on the resolution of seconds in most implementations, which isn't precise enough for our purposes
 - `utc/tai/gps/file_clock` are application-specific and require C++20
 
-<!--slider cell-split-->
+## Of the remaining functions:
 
-Of the remaining functions:
 - `gettimeofday` and `clock_gettime` are alright, albeit platform dependent.
 - `system_clock` and `high_resolution_clock` are likely fine, but can exhibit bad behavior on rare occasions. {{footnote: If the program is running on a weird computer, or during a leap day/second, or during daylight savings transitions, the time reported by these functions may go backwards. This should not matter for personal/class projects, but would not be suitable for measuring duration in real production environments.}}
 - `steady_clock` is perhaps the most "correct" tool to use, but - like the rest of the C++ clock classes - it's a little fiddly to work with
-<!--slider row-split-->
+
+<!--slider slide-->
+
+<!--slider cell-split-->
+
+<a href="https://commons.wikimedia.org/wiki/File:KIFS_x_Quaternion_4D_OpenCL_12481427404_711MP_15052019.jpg">PantheraLeo1359531</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons
+
+![A Cross Section of a 4D Representation of the Mandelbrot Set](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/KIFS_x_Quaternion_4D_OpenCL_12481427404_711MP_15052019.jpg/1280px-KIFS_x_Quaternion_4D_OpenCL_12481427404_711MP_15052019.jpg)
+Your brain after reading C/C++ time documentation.
 
 
+<!--slider web-->
 <!--slider split-->
 
 <!--slider slide-->
@@ -180,9 +212,6 @@ Most spreadsheet software can convert copy-pasted csv text into tables by separa
 
 <!--slider slide-->
 
-## Data Collection through Scripting
-
-<!--slider row-split-->
 
 ```cpp
 {{#include {{#relpath}}/collected.cpp:1:25}}
@@ -197,6 +226,11 @@ Most spreadsheet software can convert copy-pasted csv text into tables by separa
 ```
 
 <!--slider split-->
+
+<!--slider slide-->
+
+## Data Collection through Scripting
+<!--slider row-split-->
 
 
 The following python script collects the runtime of the program for a set of `(sum_count,mul_count)` combinations, printing the results in a csv text format.
@@ -221,21 +255,19 @@ The script's output:
 Most spreadsheet software can convert copy-pasted csv text into tables by separating rows by newlines and columns by commas, so outputting data as csv is highly recommended.
 ```
 
-<!--slider both-->
 
 
 <!--slider split-->
 
-### Taking the Maximum
+<!--slider web-->
+### Taking the Minimum
 
 The processing power of a system is limited, and must be divided across concurrently acting threads.
 This means that intense processor usage by other processes can negatively effect the performance of a program, however we want to measure only the effects of the program's inputs/techniques.
 
 
-
-
-Luckily, this form of error one can only reduce performance {{footnote: Imagine if a process got *faster* when other process hogged CPU time}}, so the maximum sample should approach the true speedup as the number of samples increases.
-Below, the python script previously shown is modified to take the maximum of multiple samples. 
+Luckily, this form of error one can only reduce performance {{footnote: Imagine if a process got *faster* when other process hogged CPU time}}, so the minimum sample should approach the true speedup as the number of samples increases.
+Below, the python script previously shown is modified to take the minimum of multiple samples. 
 
 
 ````admonish example title="Example: A Revised Collection Script"
@@ -254,18 +286,60 @@ The script's output:
 ```
 
 ````
+<!--slider slide-->
 
+## Taking the Minimum
+
+
+
+<!--slider row-split-->
+
+```python
+{{#include {{#relpath}}/multi_sample_collector.py}}
+```
+
+<!--slider cell-split-->
+
+- CPU usage by other processes can slow our processes during data collection
+- This error only increases the runtime, so the minimum sample should approach ideal performance
+- The script on the left uses this trick to get better data
+
+<div style="font-size:0.5em;">
+
+```console
+<!-- cmdrun g++ {{#relpath}}/collected.cpp -o my_program.exe;  python3 {{#relpath}}/multi_sample_collector.py -->
+```
+
+</div>
+
+<!--slider both-->
 <!--slider split-->
 
+<!--slider web-->
 The Original Data:
+<!--slider slide-->
+<div style="width : 70%; margin: auto;">
+<!--slider both-->
 
-![A plot of the originally collected data. The trend-lines look jagged.]({{#relpath}}/single.png "The Original Data")
+![A plot of the originally collected data. The trend-lines look jagged.]({{#relpath}}/single.svg "The Original Data")
+
+<!--slider slide-->
+</div>
+<!--slider both-->
 
 <!--slider split-->
 
+<!--slider web-->
 The Data with Multiple Samples per Point:
+<!--slider slide-->
+<div style="width : 70%; margin: auto;">
+<!--slider both-->
 
-![A plot of the data collected with multiple samples per point. The trend-lines look smooth.]({{#relpath}}/multi.png "The Data with Multiple Samples Per Point")
+![A plot of the data collected with multiple samples per point. The trend-lines look smooth.]({{#relpath}}/multi.svg "The Data with Multiple Samples Per Point")
+
+<!--slider slide-->
+</div>
+<!--slider both-->
 
 
 
