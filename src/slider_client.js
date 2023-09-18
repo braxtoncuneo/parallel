@@ -45,7 +45,7 @@ function mode_flip() {
         web.style.display = 'none'
         slide.style.display = 'block'
         document.documentElement.style.setProperty('--content-max-width', '90%')
-        content.style.setProperty('font-size', '4rem')
+        content.style.setProperty('font-size', '1vw')
     } else {
         web.style.display = 'block'
         slide.style.display = 'none'
