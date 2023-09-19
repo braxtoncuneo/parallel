@@ -9,8 +9,7 @@ With performance metrics, the relationship between a program's inputs and its pr
 Furthermore, when performance trends defy expectations, they reveal misunderstandings about the tested software.
 
 <!--slider slide-->
-<!--slider row-split-->
-<div style="font-size=4em;">
+<div style="font-size: 1.5em;">
 
 Projects for this course require you collect performance data for your programs
 
@@ -25,15 +24,18 @@ There are many common difficulties students face when collecting data.
 This document is here to help you avoid them.
 
 </div>
-<!--slider cell-split-->
 
 <!--slider both-->
 
 <!--slider split-->
 
+<!--slider slide-->
+
+# Getting Timing Info
+<!--slider web-->
+
 ## Getting Timing Info
 
-<!--slider web-->
 C++ has more time functions than you can shake a stick at, and they all measure slightly different things.
 <!--slider both-->
 <!--slider row-split-->
@@ -63,8 +65,13 @@ C++ has more time functions than you can shake a stick at, and they all measure 
 
 <!--slider split-->
 
-## To save you the trouble of figuring this out:
+<!--slider web-->
 
+## To save you the trouble of figuring this out:
+<!--slider slide-->
+
+# To save your the trouble of figuring this out:
+<!--slider both-->
 <!--slider row-split-->
 
 - `clock` Does not account for time when the process is blocked. {{footnote: More accurately, it ["returns the approximate processor time used by the process since the beginning of an implementation-defined era related to the program's execution"](https://en.cppreference.com/w/c/chrono/clock)}}
@@ -91,6 +98,8 @@ Your brain after reading C/C++ time documentation.
 <!--slider split-->
 
 <!--slider slide-->
+# Measuring Time
+<!--slider row-split-->
 
 <div style="font-size: 0.6em">
 
@@ -105,7 +114,7 @@ Your brain after reading C/C++ time documentation.
 
 <!--slider cell-split-->
 
-The program's output:
+**The program's output:**
 
 ```console
 <!-- cmdrun g++ {{#relpath}}/loading_bar.cpp -o loading_bar.exe;  ./loading_bar.exe -->
@@ -139,13 +148,13 @@ The program's output:
 <!--slider split-->
 
 
-## Calculating Performance and Assigning Units
+<!--slider web-->
 
-<!--slider row-split-->
+## Calculating Performance and Assigning Units
 
 ### Determining Units of Performance
 
-<!--slider web-->
+
 Performance is an fuzzy term, because it can refer to a variety of metrics.
 For example, the "performance" of a compression program could refer to how quickly it compresses files or how small its output is.
 
@@ -158,23 +167,30 @@ If a program's purpose is to add floating point numbers together, then the numbe
 Likewise, if a program's purpose is to apply image filters, then "images filtered per second" could be a good measure of performance.
 Alternatively, if there are a variety of image dimensions, one could instead measure by "pixels filtered per second".
 <!--slider slide-->
+
+# Calculating Performance and Assigning Units
+
+
+## Determining Units of Performance
 - Performance depends upon the purpose of a program
+
 - To describe performance meaningfully, units of progress must be defined
+
 - Throughput defined as amount of progress per unit time
 <!--slider both-->
 
 
-### Scaling Units of Performance
+## Scaling Units of Performance
 
 Just like conventional units, units of progress can span a wide range of magnitudes.
 To keep units comprehensible, it is recommended to use SI prefixes to scale units.
-For example, in the context of a super-fast sudoku-solving program, the phrase "12.53 giga-sudokus/sec" is easier to understand than "12,530,000,000 sudokus/sec".
+<!--slider slide-->
 
-<!--slider cell-split-->
+<!--slider both-->
+For example, in the context of a super-fast sudoku-solving program, the phrase "12.53 giga-sudokus/sec" is easier to understand than "12,530,000,000 sudokus/sec".
 
 
 <!--slider split-->
-
 
 <!--slider web-->
 
@@ -211,7 +227,8 @@ Most spreadsheet software can convert copy-pasted csv text into tables by separa
 ```
 
 <!--slider slide-->
-
+# An Example Program
+<!--slider row-split-->
 
 ```cpp
 {{#include {{#relpath}}/collected.cpp:1:25}}
@@ -222,14 +239,14 @@ Most spreadsheet software can convert copy-pasted csv text into tables by separa
 
 
 ```cpp
-{{#include {{#relpath}}/collected.cpp:25:}}
+{{#include {{#relpath}}/collected.cpp:26:}}
 ```
 
 <!--slider split-->
 
 <!--slider slide-->
 
-## Data Collection through Scripting
+# Data Collection through Scripting
 <!--slider row-split-->
 
 
@@ -241,7 +258,7 @@ The following python script collects the runtime of the program for a set of `(s
 
 <!--slider cell-split-->
 
-The script's output:
+**The Script's Output:**
 
 <div style="font-size:0.5em;">
 
@@ -288,7 +305,7 @@ The script's output:
 ````
 <!--slider slide-->
 
-## Taking the Minimum
+# Taking the Minimum
 
 
 
@@ -300,9 +317,12 @@ The script's output:
 
 <!--slider cell-split-->
 
+
 - CPU usage by other processes can slow our processes during data collection
 - This error only increases the runtime, so the minimum sample should approach ideal performance
 - The script on the left uses this trick to get better data
+
+**The Script's Output:**
 
 <div style="font-size:0.5em;">
 
@@ -318,7 +338,8 @@ The script's output:
 <!--slider web-->
 The Original Data:
 <!--slider slide-->
-<div style="width : 70%; margin: auto;">
+# The Original Data
+<div style="width : 80%; margin: auto;">
 <!--slider both-->
 
 ![A plot of the originally collected data. The trend-lines look jagged.]({{#relpath}}/single.svg "The Original Data")
@@ -332,7 +353,8 @@ The Original Data:
 <!--slider web-->
 The Data with Multiple Samples per Point:
 <!--slider slide-->
-<div style="width : 70%; margin: auto;">
+# The Data with Multiple Samples per Point
+<div style="width : 80%; margin: auto;">
 <!--slider both-->
 
 ![A plot of the data collected with multiple samples per point. The trend-lines look smooth.]({{#relpath}}/multi.svg "The Data with Multiple Samples Per Point")

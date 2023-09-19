@@ -21,7 +21,7 @@ Following these guidelines will help you communicate your ideas effectively, whi
 
 <!--slider cell-split-->
 
-<div style="width: 50%; margin: auto;">
+<div style="width: 60%; margin: auto;">
 
 ![](https://imgs.xkcd.com/comics/curve_fitting.png)
 [Randall Monroe (xkcd), CC BY-SA 2.5](https://xkcd.com/2048)
@@ -154,17 +154,26 @@ For small collections of data, you are expected to show the intermediate values 
 
 <!--slider cell-split-->
 
-<div style="width: 50%; margin: auto;">
+<div style="width: 60%; margin: auto;">
 
 ![](https://imgs.xkcd.com/comics/garbage_math.png)
 [Randall Monroe (xkcd), CC BY-SA 2.5](https://xkcd.com/2295)
 
 </div>
 
-<!--slider both-->
 <!--slider split-->
 
+<!--slider web-->
+
 ## Interpreting your Data
+
+<!--slider slide -->
+
+# Interpreting your Data
+
+<!--slider both-->
+
+<!--slider both-->
 <!--slider row-split-->
 
 In addition to sound data and sound mathematics, your interpretation of data should make sense.

@@ -8,13 +8,13 @@ modes = [ "none", "web", "slide", "both" ]
 
 slide_style  = "<style>\n"
 #slide_style += ":root { --content-max-width: 90%; }\n"
-slide_style += "img { width: 100%; }\n"
+slide_style += "img { width: 100%; height: 100%; object-fit: contain; }\n"
 slide_style += ".segment_container { display: flex; flex-direction: row; }\n"
 slide_style += ".segment { margin-left: 2%; margin-right: 2%; flex: 1; }\n"
 slide_style += "</style>\n"
 
 
-cell_start = "<div class=\"segment\">\n\n"
+cell_start = "<div class=\"segment\" {cell_attr}>\n\n"
 cell_end   = "</div>\n"
 
 row_start = "<div class=\"segment_container\">\n"
@@ -43,22 +43,24 @@ def slide_script(slide_count):
 
 def process_slide(content,slide_number):
     result  = f"<div id=\"slide_{slide_number}\" style=\"display: none;\"> "
-    result += slide_start
+    result += slide_start.format(cell_attr="style=\"flex: 1;\"")
     for line in content.splitlines():
         line = re.sub(r"{{footnote:[^}]*(}[^}]+)*}}","",line)
-        directive = r"^[ \t]*<!--[ \t]*slider[ \t]*(?P<dir>[\w-]+)[ \t]*-->[ \t]*$"
+        directive = r"^[ \t]*<!--[ \t]*slider[ \t]*(?P<dir>[\w-]+)[ \t]*(?P<arg>[\w-]+)?[ \t]*-->[ \t]*$"
         match = re.match(directive,line)
         if match == None:
             result += line + '\n'
             continue
         d = match.group('dir')
-        print(d,file=sys.stderr)
+        arg = match.group('arg')
+        if arg == None:
+            arg = 1
         if d == 'row-split' :
             result += row_end
-            result += row_start
+            result += row_start.format(cell_attr=f"style=\"flex: {arg};\"")
         elif d == 'cell-split':
             result += cell_end
-            result += cell_start
+            result += cell_start.format(cell_attr=f"style=\"flex: {arg};\"")
 
     result += slide_end
     result +=  "</div>"
@@ -82,8 +84,6 @@ def filter_content(content,current_mode):
                      slide_number += 1
             relpath = r"{{[ \t]*#relpath[ \t]*}}"
             revised_line = re.sub(relpath,".",line)
-            if revised_line != line:
-                print(revised_line,file=sys.stderr)
             if current_mode % 2  == 1 :
                 if match == None:
                     web_content += revised_line + '\n'

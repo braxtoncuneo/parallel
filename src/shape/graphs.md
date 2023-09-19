@@ -1,3 +1,4 @@
+<!--hidden-->
 # Dependency Graphs
 
 ## Laying Groundwork

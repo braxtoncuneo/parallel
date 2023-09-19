@@ -44,13 +44,17 @@ function mode_flip() {
     if (slide_mode) {
         web.style.display = 'none'
         slide.style.display = 'block'
-        document.documentElement.style.setProperty('--content-max-width', '90%')
-        content.style.setProperty('font-size', '1vw')
+        document.documentElement.style.setProperty('--content-max-width', 'min(90%,100vh*(16/9))')
+        content.style.setProperty('font-size', 'min(1.5vw,1.5vh*(16/9)')
+        content.style.setProperty('height', 'min(100%,100vw*(9/16)')
+        content.style.setProperty('margin', 'auto')
     } else {
         web.style.display = 'block'
         slide.style.display = 'none'
         document.documentElement.style.setProperty('--content-max-width', content_default_max)
         content.style.removeProperty('font-size')
+        content.style.removeProperty('height')
+        content.style.removeProperty('margin')
     }
 
     main = document.getElementsByTagName('main')[0];

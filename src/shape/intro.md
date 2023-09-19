@@ -1,3 +1,4 @@
+<!--hidden-->
 # The Shape of a Problem
 
 ## Chapter Premise

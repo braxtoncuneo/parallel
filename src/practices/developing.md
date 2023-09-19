@@ -1,3 +1,4 @@
+<!--slider web-->
 # Developing Software
 
 ## The CS1 Server
@@ -24,5 +25,36 @@ If the requested language looks like a good fit for the project, I may approve i
 Keep in mind that I don't plan to approve languages that trivialize the challenge of projects.
 Furthermore, if you request to use a certain language, you accept the responsibility of any increased difficulty associated with that language.
 
+
+<!--slider slide -->
+# The CS1 Server
+
+<div style="font-size: 1.5em;">
+
+The software that you submit for this course (with the exception of software that uses GPUs) will be evaluated based upon how it runs on Seattle University's CS1 server.
+
+It's strongly recommended you develop on CS1 because:
+
+- It has all the things you need (for CPU programs)
+- Your development problems will be similar to everyone else's
+- It greatly reduces the chance of programs magically breaking upon submission
+- You won't have to worry about migrating files
+
+</div>
+
+
+<!--slider split-->
+
+# Choice of Language
+
+<div style="font-size: 1.5em;">
+
+This course will primarily use C++ and C++-adjacent languages such as CUDA/OpenCL, and most projects will require you to develop in a specific language.
+
+If you wish to implement your project using a language that's different from the project description, talk with me about it.
+
+If the requested language looks like a good fit for the project, I may approve or deny its use on a case-by-case basis.
+
+</div>
 
 
