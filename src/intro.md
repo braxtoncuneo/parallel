@@ -28,7 +28,7 @@ Some other programming languages are shown, but in-depth knowledge of them isn't
 This book is ordered to approximate the order subjects will be covered in the course, but it is also structured as a quick reference.
 Feel free to read wherever your curiosity takes you.
 
-This book is a living document, so parts may change or disappear as the term progresses or as the course is refined.
+This book is a living document, so parts may change, appear, or disappear as the term progresses or as the course is refined.
 
 If you are not reading this book for the Parallel Computing course at Seattle University, you may feel free to skip the [Course Practices](./practices/intro.md) section.
 

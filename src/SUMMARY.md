@@ -7,11 +7,11 @@
 	- [Developing Software](./practices/developing.md)
 - [Laying Groundwork](./intro/intro.md)
     - [Computers in a Nutshell](./intro/computers.md)
-    - [Random Access Memory](./intro/memory.md)
-    - [Networking](./intro/networks.md)
+    - [Random Access Memory (Supplemental)](./intro/memory.md)
     - [Models of Parallelism](./intro/models.md)
     - [Problems with State](./intro/state.md)
     - [Laws of Computer Power](./intro/laws.md)
+<!--
 - [The Shape of a Problem](./shape/intro.md)
 	- [Dependency Graphs](./shape/graphs.md)
 	- [Embarassing Parallelism](./shape/embarassing.md)
@@ -37,3 +37,4 @@
 	- [openCL](./API/open_cl.md)
 	- [openGL](./API/open_gl.md)
 	- [MPI](./API/MPI.md)
+-->
