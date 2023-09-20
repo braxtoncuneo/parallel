@@ -91,7 +91,7 @@ C++ has more time functions than you can shake a stick at, and they all measure 
 <a href="https://commons.wikimedia.org/wiki/File:KIFS_x_Quaternion_4D_OpenCL_12481427404_711MP_15052019.jpg">PantheraLeo1359531</a>, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>, via Wikimedia Commons
 
 ![A Cross Section of a 4D Representation of the Mandelbrot Set](https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/KIFS_x_Quaternion_4D_OpenCL_12481427404_711MP_15052019.jpg/1280px-KIFS_x_Quaternion_4D_OpenCL_12481427404_711MP_15052019.jpg)
-Your brain after reading C/C++ time documentation.
+Your brain on \<chrono\>
 
 
 <!--slider web-->

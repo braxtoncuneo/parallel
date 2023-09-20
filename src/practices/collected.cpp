@@ -7,8 +7,8 @@ using std::chrono::steady_clock;
 using std::chrono::milliseconds;
 using std::chrono::duration_cast;
 using std::this_thread::sleep_for;
-using time_point = std::chrono::steady_clock::time_point;
-using time_span = std::chrono::duration<double>;
+using TimePoint = std::chrono::steady_clock::time_point;
+using TimeSpan = std::chrono::duration<double>;
 
 
 int main(int argc, char *argv[]) {
@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     }
 
 
-    time_point start_time = steady_clock::now();
+    TimePoint start_time = steady_clock::now();
 
     // Sum the products of many random numbers
     int sum = 0;
@@ -39,9 +39,9 @@ int main(int argc, char *argv[]) {
         sum += product;
     }
 
-    time_point end_time = steady_clock::now();
+    TimePoint end_time = steady_clock::now();
 
-    time_span span = duration_cast<time_span>
+    TimeSpan span = duration_cast<time_span>
     (end_time-start_time);
 
     std::cout << span.count();
