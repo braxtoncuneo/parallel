@@ -28,7 +28,7 @@ int main() {
     TimePoint end_time = steady_clock::now();
 
     // Convert the difference of the times to get a duration
-    TimeSpan span = duration_cast<time_span>(end_time-start_time);
+    TimeSpan span = duration_cast<TimeSpan>(end_time-start_time);
 
     std::cout << "\n\nIt took "<< span.count() <<" seconds to load.\n";
     return 0;
