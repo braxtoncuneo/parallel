@@ -33,13 +33,13 @@ jobs:
     steps:
             
       - uses: actions/checkout@v3
-      - run: rustup toolchain install stable --profile minimal
-      - name: Rust Cache
-        uses: Swatinem/rust-cache@v2.7.0
       - name: Install Rust
         run: |
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
           rustup update
+      - run: rustup toolchain install stable --profile minimal
+      - name: Rust Cache
+        uses: Swatinem/rust-cache@v2.7.0
       - name: Install mdBook
         run: |
           cargo install --version ${MDBOOK_VERSION} mdbook
