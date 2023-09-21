@@ -32,9 +32,30 @@ jobs:
       MDBOOK_VERSION: 0.4.21
     steps:
       - uses: actions/checkout@v3
+      - name: Install Rust
+        run: |
+          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
+          rustup update
+      - name: Install mdBook
+        run: |
+          cargo install --version ${MDBOOK_VERSION} mdbook
+      - name: Install mdbook-admonish
+        run: |
+          cargo install mdbook-admonish
+      - name: Install mdbook-footnote
+        run: |
+          cargo install mdbook-footnote
+      - name: Install mdbook-cmdrun
+        run: |
+          cargo install mdbook-cmdrun
+      - name: Install mdbook-hide
+        run: |
+          cargo install mdbook-hide
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
+      - name: Build with mdBook
+        run: mdbook build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
