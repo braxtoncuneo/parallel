@@ -32,7 +32,17 @@ jobs:
       MDBOOK_VERSION: 0.4.21
     steps:
             
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: '3.x'
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: 'x64'
+      # You can test your matrix by printing the current Python version
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
       - name: Install Rust
         run: |
           curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf -y | sh
