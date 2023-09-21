@@ -117,7 +117,7 @@ Your brain on \<chrono\>
 **The program's output:**
 
 ```console
-<!-- cmdrun g++ {{#relpath}}/loading_bar.cpp -o loading_bar.exe;  ./loading_bar.exe -->
+<!-- cmdrun g++ {{#relpath}}/loading_bar.cpp -o loading_bar.exe 2>&1;  ./loading_bar.exe 2>&1 -->
 ```
 
 ### Other Tips
