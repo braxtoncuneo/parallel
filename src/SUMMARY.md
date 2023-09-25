@@ -5,12 +5,13 @@
 	- [Data Collection](./practices/collecting_data.md)
 	- [Showing Data](./practices/showing_data.md)
 	- [Developing Software](./practices/developing.md)
-<!--
 - [Laying Groundwork](./intro/intro.md)
-    - [Computers in a Nutshell](./intro/computers.md)
+    - [Computers in a Nutshell (Supplemental)](./intro/computers.md)
     - [Random Access Memory (Supplemental)](./intro/memory.md)
+    - [Concurrency and Parallelism](./intro/concurrency.md)
+<!--
+    - [Organizing Execution](./intro/threads.md)
     - [Models of Parallelism](./intro/models.md)
-    - [Problems with State](./intro/state.md)
     - [Laws of Computer Power](./intro/laws.md)
 - [The Shape of a Problem](./shape/intro.md)
 	- [Dependency Graphs](./shape/graphs.md)

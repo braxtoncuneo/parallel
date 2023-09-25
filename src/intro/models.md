@@ -19,6 +19,7 @@
 ### Implicit Parallelism
 
 
+
 ## Models of Structure
 
 ### Task Level Parallelism

@@ -46,7 +46,7 @@ def process_slide(content,slide_number):
     result += slide_start.format(cell_attr="style=\"flex: 1;\"")
     for line in content.splitlines():
         line = re.sub(r"{{footnote:[^}]*(}[^}]+)*}}","",line)
-        directive = r"^[ \t]*<!--[ \t]*slider[ \t]*(?P<dir>[\w-]+)[ \t]*(?P<arg>[\w-]+)?[ \t]*-->[ \t]*$"
+        directive = r"^[ \t]*<!--[ \t]*slider[ \t]*(?P<dir>[\w-]+)[ \t]*(?P<arg>[\w.-]+)?[ \t]*-->[ \t]*$"
         match = re.match(directive,line)
         if match == None:
             result += line + '\n'

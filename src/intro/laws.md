@@ -1,6 +1,6 @@
-# Why Parallelism?
+# Laws of Computer Power
 
-Why
+
 
 ## Moore's Law
 
