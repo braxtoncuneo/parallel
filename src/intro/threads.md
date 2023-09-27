@@ -53,8 +53,6 @@ It has a variety of options, and the defaults remove the parts you don't usually
 
 ## Processes
 
-<!--slider row-split-->
-
 <!--slider web-->
 In order to execute a program, its instructions need to be stored in memory and a processor must be directed to execute those instructions.
 Additionally, depending upon the program, additional resources such as files, network IO, and access to peripherals may be required.
@@ -65,14 +63,22 @@ By assigning resources and privileges to processes, operating systems can more e
 
 During creation, the executable's instructions are copied into memory and the program setup specified by the executable is performed.
 
+<!--slider slide-->
+- Before a program is run, it needs to be given resources and privileges
+- A **process** is an instance of a program's execution and its set of assigned resources and privileges
+- Starting resources initialized based on executable and OS
+- Privileges initialized based upon account and file metadata
+
 <!--slider both-->
 <!--slider cell-split-->
 
-<div style="width: 60%; margin: auto;">
+<div style="width: 80%; margin: auto;">
 
 ![](./threads/prog_load.svg)
-
+<!--slider web-->
 *A loose approximation of how a program is loaded into memory. This program is from our [Computers in a Nutshell](./computers.md) chapter.*
+<!--slider both-->
+
 </div>
 
 <!--slider split-->
@@ -111,6 +117,8 @@ These instructions:
 
 <!--slider split-->
 
+<!--slider web-->
+
 ## Threads
 
 Because a process is partially defined by its resources, each new process that is created represents resources that are denied to other processes.
@@ -120,6 +128,15 @@ Interestingly, the information that is required to execute within a process's re
 With this abstraction, each process is associated with one or more threads, and each thread represents an independent sequence of execution within its parent process.
 This many-to-one relationship allows the same resources to be shared across multiple concurrent tasks, increasing the resource efficiency of the system.
 
+<!--slider slide-->
+Because a process is partially defined by its resources, each new process that is created represents resources that are denied to other processes.
+
+OS designers noticed this and separated the execution of instruction sequences into a different abstraction called a **thread**.
+
+Through this abstraction, multiple execution states can be tracked per process, allowing concurrent tasks to be performed more efficiently by sharing resources.
+
+<!--slider both-->
+
 ![](./threads/proc_tcb.svg)
 
 This practice is referred to as **multithreading**, and is a common method for improving the performance and flexibility of programs.
@@ -127,12 +144,104 @@ This practice is referred to as **multithreading**, and is a common method for i
 <!--slider split-->
 
 
-## C++ Threads
+## Working with (C++) Threads
 
 There are many APIs that provide threading capabilities.
 To keep development simple, example code will use the the [C++ \<thread\> library](https://en.cppreference.com/w/cpp/thread).
 
-Here's a simple example program:
+### Common Thread API Features
+
+Most Thread APIs have the following features:
+- Thread handles   : Objects that identify/represent specific threads.
+- Thread creation  : Starting a new thread and receiving a handle for it.
+- Thread joining   : Waiting in one thread for a thread to complete.
+- Thread detaching : Notifying the OS/API that no other threads will wait for a specific thread to complete (so it can clean up after itself) 
+
+<!--slider split-->
+<!--slider slide-->
+
+## Working with (C++) Threads
+
+<!--slider row-split-->
+
+### Common Thread API Features
+
+Most Thread APIs have the following features:
+- Thread handles   : Objects that identify/represent specific threads.
+- Thread creation  : Starting a new thread and receiving a handle for it.
+- Thread joining   : Waiting in one thread for a thread to complete.
+- Thread detaching : Notifying the OS/API that no other threads will wait for a specific thread to complete (so it can clean up after itself) 
+
+<!--slider cell-split-->
+
+![](./threads/thread_basics.drawio.svg)
+
+<!--slider split-->
+
+## Working with (C++) Threads
+
+<!--slider web-->
+
+Here is a simple program using the \<thread\> API, as well as a diagram showing its operations across the lifetimes of its threads.
+
+```cpp
+{{#include ./threads/threads_simple.cpp}}
+```
+<div style="width: 60%; margin: auto;">
+
+![](./threads/thread_basics.drawio.svg)
+
+</div>
+
+<!--slider slide-->
+
+<!--slider row-split-->
+
+Here's a short example program:
+
+<div style="font-size: 0.75em; height: 60vh; overflow: scroll;">
+
+```cpp
+{{#include ./threads/threads_simple.cpp}}
+```
+
+</div>
+
+<!--slider cell-split-->
+
+![](./threads/thread_basics.drawio.svg)
+
+
+<!--slider split-->
+
+## Working with (C++) Threads
+
+<!--slider row-split-->
+
+
+<div style="font-size: 0.75em; height: 60vh; overflow: scroll;">
+
+```cpp
+{{#include ./threads/threads_simple.cpp}}
+```
+
+</div>
+
+<!--slider cell-split-->
+
+<!--slider both-->
+The program's output:
+
+```console
+<!--cmdrun ./threads/simple -->
+```
+
+
+<!--slider web-->
+
+### A More Involved Example 
+
+Here's a program with a bit more application involved:
 ```cpp
 {{#include ./threads/chiron.cpp}}
 ```
@@ -141,21 +250,215 @@ If you run this program, it will display a simple text animation.
 The text used is the first argument of the program or, if no argument is provided, `"Your message here"`.
 
 This program is evaluated through two threads.
-The first thre
+The main thread spawns a watcher thread that will set a boolean to `true` and terminate once the user has hit enter.
+As the watcher thread waits, the main thread loops through different element rotations of a message, printing them 0.1 seconds apart.
+
+<!--slider both-->
+
+<!--slider split-->
+
+
+
+## Thinking about Threads
+<!--slider row-split-->
+
+When thinking about threads, it is important to understand the system of thread creations (aka "forks"), detaches, and joins applied by the program.
+The structure of forks/joins/detaches subdivides the execution of a program into the set of independent sequential tasks that the processor will follow.
+
+To begin, let us consider a single process that uses multiple threads.
+
+
+<div style="width: 80%; margin: auto;">
+
+![](./threads/concurrency_opener.drawio.svg)
+</div>
+
+<!--slider split-->
+<!--slider slide-->
+## Thinking about Threads
+<!--slider both-->
+
+If this process is running on a one-processor machine, then the processor would "unroll" the concurrent components of the program into one sequence of execution.
+
+When thinking about this "unrolling", remember that the processor cannot execute a segment of a thread's "path" if any previous segment has not yet been executed.
+
+<div style="width: 80%; margin: auto;">
+
+![](./threads/concurrency_unrolling.drawio.svg)
+</div>
+
+<!--slider split-->
+
+### Variations in Order of Execution
+
+There are multiple possible orders to execute concurrent threads.
+For example, there here are two possible execution orderings for the same program.
+
+If two possible orderings for a program produce different results, that program has a **race condition**.
+
+<!--slider cell-split 2-->
+
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./threads/concurrent_choices.drawio.svg)
+<!--slider web-->
+</div>
+<!--slider both-->
 
 
 <!--slider split-->
 
-## Multiprocessing
+### Uniprocessed Multiprogramming
+
+Here is an example of a single-processor system executing two processes concurrently.
+
+<!--slider cell-split 2-->
+
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./threads/up_mp.drawio.svg)
+<!--slider web-->
+</div>
+<!--slider both-->
+
+
+
+<!--slider split-->
+
+### Multiprocessed Multiprogramming
+
+If an additional processor was added to the system, the executions performed by both processors could interleave across multiple processes, as shown below.
+
+<!--slider cell-split 2-->
+
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./threads/mp_mp.drawio.svg)
+<!--slider web-->
+</div>
+<!--slider both-->
+
+
+<!--slider split-->
+
+
+
+### Multiprocessed Uniprogramming
+
+If you were running this pair of processes on an OS that had multithreading without multiprogramming, both processors would interleave execution on each process in sequence.
+
+
+<!--slider cell-split 2-->
+
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./threads/mp_up.drawio.svg)
+<!--slider web-->
+</div>
+<!--slider both-->
+
+
+<!--slider split-->
 
 
 
 
-## User Threads vs Kernel Threads
+### User Threads
+
+**User threads** are threads that are implemented as part of a user program, as opposed to **kernel threads**, which are provided by the operating system.
+To the operating system, user threads don't exist as "real" (kernel) threads.
+Instead, the program that implements the user threads is simulating the behavior of multiple threads through the execution of a single kernel thread.
+
+<!--slider web-->
+While user threads don't provide additional processing power, they are less resource-intensive compared to kernel threads. They are useful when:
+<!--slider slide-->
+
+- kernel threads are not available
+- implementing a virtual machine
+- there are so many concurrent tasks, representing them all with kernel threads would introduce significant overhead
+
+<!--slider cell-split 2-->
+
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./threads/user_threads.drawio.svg)
+<!--slider web-->
+</div>
+<!--slider both-->
 
 
-## Pre-emptive vs Cooperative Multitasking
+<!--slider split-->
 
 
-## Routines vs Coroutines
+
+### Hybrid (M-to-N) Threads
+
+**Hybrid threads** are a compromise between user and kernel threads, where multiple kernel threads cooperate to simulate a greater number of threads.
+
+<!--slider cell-split 2-->
+
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./threads/m_to_n_threads.drawio.svg)
+<!--slider web-->
+</div>
+<!--slider both-->
+
+
+<!--slider split-->
+
+
+## Preemptive vs Cooperative Multitasking
+
+Up to this point, we haven't discussed the mechanism that allows processors to switch between different threads.
+
+<!--slider web-->
+For our diagrams, we only had processors switch between threads at significant events such as thread creation and thread joining.
+While this makes the diagrams easier to read, this sort of thread-switching pattern is not always present.
+
+Most operating systems use **preemption** to switch between threads.
+Preemption is the interruption of a thread's execution, where the program counter (PC) is set to jump the processor to a different set of instructions.
+Conventionally, the PC is set to execute special code provided by the operating system to perform a particular task.
+As part of this, the processor temporarily gains kernel-level privileges to access data structures that user-land programs cannot.
+Once the switch back to user instructions is initiated, these kernel-level privileges are removed.
+
+Most modern processors come with a special clock that can send an interrupt on a fixed time interval.
+Operating systems use this clock to switch between threads by having it periodically force the processor to run special code that swaps the current thread out for a different one.
+This whole thread-switching process is known as **context switching**.
+
+<!--slider both-->
+
+With pre-emptive multitasking, a processor can switch between threads at any point during execution, and the operating system doesn't need to rely upon user programs voluntarily giving up processor time.
+While this is convenient, it requires kernel-level privileges to implement.
+In cases where such privileges aren't available, such as user-threading, programs apply **cooperative multitasking**.
+
+Cooperative multitasking is multitasking accomplished through tasks/threads explicitly giving up their spot on the processor for other threads.
+In cases where all threads can be trusted to do so, this can be a useful way to structure highly concurrent tasks.
+For example, many programming languages implement async function calls through cooperative, user/hybrid-threaded multitasking.
+
+
+
+
+
+<!--slider split-->
+
+## Summary
+- Multiprogramming : Executing multiple processes concurrently
+- Multiprocessing  : Executing across multiple processors at the same time
+- Multithreading   : Executing multiple threads concurrently as part of the same process
+- Kernel Threads   : The threads provided by an OS
+- User Threads     : A single kernel thread "pretending" to be multiple threads
+- Hybrid Threads   : Multiple kernel threads "pretending" to be even more threads
 

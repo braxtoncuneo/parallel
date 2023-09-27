@@ -9,9 +9,10 @@
     - [Computers in a Nutshell (Supplemental)](./intro/computers.md)
     - [Random Access Memory (Supplemental)](./intro/memory.md)
     - [Concurrency and Parallelism](./intro/concurrency.md)
-<!--
     - [Organizing Execution](./intro/threads.md)
     - [Models of Parallelism](./intro/models.md)
+    - [The Shape of a Problem (Under Construction - Diagrams Only)](./intro/shape.md)
+<!--
     - [Laws of Computer Power](./intro/laws.md)
 - [The Shape of a Problem](./shape/intro.md)
 	- [Dependency Graphs](./shape/graphs.md)
