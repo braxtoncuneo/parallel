@@ -1,2 +1,0 @@
-<!--hidden-->
-# Data Decomposition

@@ -1,2 +1,0 @@
-<!--hidden-->
-# Map and Reduce

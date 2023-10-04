@@ -1,2 +1,0 @@
-<!--hidden-->
-# Divide and Conquer

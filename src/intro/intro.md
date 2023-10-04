@@ -9,7 +9,7 @@ Parallelism in software is closely tied with the fine details of how software is
 - [Concurrency and Parallelism](./concurrency.md) - Important distinctions about fundamental concepts
 - [Organizing Execution](./threads.md) - A chapter with too many arrows
 - [Models of Parallelism](./models.md) - Ways of thinking about parallelism
-- [The Shape of a Problem (Under Construction - Diagrams Only)](./shape.md) - More arrows
 <!--
+- [The Shape of a Problem (Under Construction - Diagrams Only)](./shape.md) - More arrows
 - [Laws of Computer Power](./laws.md) - How parallelism affects programs
 -->
