@@ -14,7 +14,11 @@
 - [The Shape of a Problem](./shape/intro.md)
 	- [Dependency Graphs](./shape/graphs.md)
 	- [Decomposing Problems](./shape/decomp.md)
+- [Atomics (Diagrams Only)](./shared_mem/atomics.md)
 <!--
+- [Shared Memory](./shared_mem/intro.md)
+	- [Synchronization](./shared_mem/sync.md)
+	- [Storage and Lifetimes](./shared_mem/lifetimes.md)
 	- [Strategies](./shape/strategies.md)
 	- [Synchronization](./shape/sync.md)
 	- [Atomics](./shape/atomics.md)

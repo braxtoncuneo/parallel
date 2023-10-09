@@ -20,8 +20,8 @@ To address these nuances, this chapter is dedicated to outlining the space of pr
 - [Dependency Graphs](./graphs.md) - A reframing of parallel processing patterns
 - [Decomposing Problems](./decomp.md) - Breaking down tasks
 <!--
-- [Strategies](./strategies.md) - Common design patterns
 - [Synchronization](./sync.md) - The hard part
 - [Atomics](./atomics) - The harder part
+- [Strategies](./strategies.md) - Common design patterns
 - [Constructing the Toolbox](./construct) - A peek under the hood
 -->
