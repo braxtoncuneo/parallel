@@ -50,9 +50,13 @@ jobs:
       - run: rustup toolchain install stable --profile minimal
       - name: Rust Cache
         uses: Swatinem/rust-cache@v2.7.0
+      - name: Install and run cargo-upate
+        run: |
+          cargo install --cargo-update
+          cargo install-update -a
       - name: Install mdBook
         run: |
-          cargo install --version ${MDBOOK_VERSION} mdbook
+          cargo install mdbook
       - name: Install mdbook-admonish
         run: |
           cargo install mdbook-admonish
