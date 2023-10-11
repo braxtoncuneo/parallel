@@ -52,7 +52,7 @@ jobs:
         uses: Swatinem/rust-cache@v2.7.0
       - name: Install and run cargo-upate
         run: |
-          cargo install --cargo-update
+          cargo install cargo-update
           cargo install-update -a
       - name: Install mdBook
         run: |
