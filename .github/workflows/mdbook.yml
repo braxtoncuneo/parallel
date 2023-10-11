@@ -60,6 +60,7 @@ jobs:
       - name: Install mdbook-admonish
         run: |
           cargo install mdbook-admonish
+          mdbook-admonish install
       - name: Install mdbook-footnote
         run: |
           cargo install mdbook-footnote
