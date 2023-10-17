@@ -12,7 +12,7 @@ class semaphore {
         , counter(total)
     {}
 
-    void wait() {
+    void acquire() {
         std::unique_lock<std::mutex> ulock(lock);
         counter--;
         if(counter < 0){
@@ -21,7 +21,7 @@ class semaphore {
         lock.unlock();
     }
 
-    void acquire() {
+    void release() {
         lock.lock();
         counter++;
         if(counter <=0){
@@ -30,7 +30,7 @@ class semaphore {
         lock.unlock();
     }
 
-    void release() {
+    void release_all() {
         lock.lock();
         counter = total;
         cond.notify_all();

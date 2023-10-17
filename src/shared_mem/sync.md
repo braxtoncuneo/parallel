@@ -51,8 +51,8 @@ So, if the time required to wait for a condition is brief, busy-waiting can actu
 Most modern synchronization APIs use **atomic** operations to implement their synchronization primitives.
 Without them, some busy-waiting is still required to safely coordinate between threads, even when most waiting is actually performed through sleeping.
 
-For this sub-chapter, we will only be discussing synchronization without into atomics.
-This is done to both to show that these primitives can exist apart from either and to show how far we have progressed.
+For this sub-chapter, we will only be discussing synchronization without atomics.
+This is done both to show that these primitives can exist apart from either and to show how far we have progressed.
 
 
 ## Mutexes
@@ -91,7 +91,7 @@ While an operation such as `++` seems quite simple, it usually consists of multi
 - Adding one to that register
 - Storing the register value back into memory
 
-By the time a thread store this value back into memory, another thread could have read, incremented, and stored the old total.
+By the time a thread stores this value back into memory, another thread could have read, incremented, and stored the old total.
 If this occurs, the original thread would be overwriting the effects of the other threads processing, erasing these effects for future operations.
 
 This is a classic example of a **race condition**, where the result of a computation is effected by the timing of operations.
@@ -105,7 +105,7 @@ The act of gaining permission to a resource through a mutex is referred to as **
 
 Nowadays, mutexes are usually implemented with atomics, but before atomics existed, there were algorithms that used memory cleverly to negotiate mutex ownership between threads.
 A classic example is Peterson's algorithm.
-Below is an implementation of the two-thread version of it:
+Here is an implementation it's two-threaded version:
 
 ```cpp
 {{#include ./sync/mutex.h}}
