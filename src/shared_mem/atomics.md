@@ -166,9 +166,9 @@ With this scheme:
 This scheme assumes that when you decrement below zero, then the decrementing thread must be the last to arrive during a "phase" of synchronization involving the barrier.
 However, what if the set of threads that use a barrier change between phases? This could mean that a thread belonging to the next phase could arrive at the barrier and decrement the counter before the previous phase is resolved. If this were the case, and if we were applying this scheme, then that thread would think it was also the last thread in its phase and increment the counter, leading to the counter entering the forbidden zone when the true final thread of the phase performs its increment, leading to potential deadlock.
 
-To fix this issue, we may be tempted to fix things like the binary semaphore, but this does not work because the
-
-institute a further limitation on when we can add to the counter. Only threads that decrement to a number that is evenly divisible by the barrier size may add to the counter. This fixes the issue with overlapping phases, but it introdu
+To fix this issue, we may be tempted to fix things like the binary semaphore, but this does not work because we cannot treat decrements to this counter interchangeably.
+A decrement by a thread belonging to the current phase is not equivalent to a decrement by a thread belonging to the next phase.
+In order to distinguish between these transactions, we either need to keep different counters for adjacent phases of the barrier or force threads to wait until the current phase is fully resolved before pefroming a decrement.
 
 <!--slider split-->
 
