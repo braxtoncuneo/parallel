@@ -17,10 +17,10 @@
 - [Shared Memory](./shared_mem/intro.md)
 	- [Synchronization](./shared_mem/sync.md)
 	- [Atomics](./shared_mem/atomics.md)
-<!--
 - [Message Passing](./message_passing/intro.md)
   - [The Basics](./message_passing/basics.md)
   - [Broadcasting](./message_passing/broadcasting.md)
+<!--
   - [Sending and Recieving](./message_passing/sending.md)
   - [Scattering and Gathering](./message_passing/scattering.md)
 	- [Storage and Lifetimes](./shared_mem/lifetimes.md)
