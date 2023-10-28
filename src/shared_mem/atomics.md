@@ -10,7 +10,7 @@ If we only care about preserving side effects, the order of these operations is 
 
 ## The Basics
 
-An atomic operation is an operation that is *indivisible* to all relevant observers. {{footenote: This relates to the original theory of atoms, which thought of atoms as indivisible units of matter.}}
+An atomic operation is an operation that is *indivisible* to all relevant observers. {{footnote: This relates to the original theory of atoms, which thought of atoms as indivisible units of matter.}}
 While an atomic operation could succeed or fail, it may never be observed as partway through execution.
 
 A classic example of non-atomicity, and how that can cause problems, is the multiple-adders scenario shown in the [synchronization](./sync.md) sub-chapter:
@@ -148,7 +148,7 @@ This solution seems okay, but it opens up a potential hazard: what if a thread a
 
 If there is a third thread, its decrement would look like a valid acquisition, and if the fixing decrement occurs before the third thread releases, the third thread would attempt to wake a sleeping thread. Given this, a valid solution would be to have acquisition attempts put threads to sleep if the counter is initially in a forbidden state.
 
-However, what if there is no third thread, or (equivalently) what if some combination of aqcuisitions and releases results in the counter reaching 1 immediately before the fixing decrement occurs? In this case, there must be at least one thread waiting on the semaphore, and the fixing decrement has effectively claimed the sempahore on its behalf. The thread performing the fixing decrement simply needs to wake one thread before its bad acquisition attempt resolves.
+However, what if there is no third thread, or (equivalently) what if some combination of acquisitions and releases results in the counter reaching 1 immediately before the fixing decrement occurs? In this case, there must be at least one thread waiting on the semaphore, and the fixing decrement has effectively claimed the sempahore on its behalf. The thread performing the fixing decrement simply needs to wake one thread before its bad acquisition attempt resolves.
 
 <!--slider split-->
 
@@ -168,7 +168,7 @@ However, what if the set of threads that use a barrier change between phases? Th
 
 To fix this issue, we may be tempted to fix things like the binary semaphore, but this does not work because we cannot treat decrements to this counter interchangeably.
 A decrement by a thread belonging to the current phase is not equivalent to a decrement by a thread belonging to the next phase.
-In order to distinguish between these transactions, we either need to keep different counters for adjacent phases of the barrier or force threads to wait until the current phase is fully resolved before pefroming a decrement.
+In order to distinguish between these transactions, we either need to keep different counters for adjacent phases of the barrier or force threads to wait until the current phase is fully resolved before performing a decrement.
 
 <!--slider split-->
 

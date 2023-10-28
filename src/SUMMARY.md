@@ -20,9 +20,14 @@
 - [Message Passing](./message_passing/intro.md)
   - [The Basics](./message_passing/basics.md)
   - [Broadcasting](./message_passing/broadcasting.md)
-<!--
   - [Sending and Recieving](./message_passing/sending.md)
   - [Scattering and Gathering](./message_passing/scattering.md)
+  - [Scanning](./message_passing/scanning.md)
+  - [Reducing](./message_passing/reducing.md)
+  - [Custom Operations and Structs](./message_passing/operations.md)
+<!--
+  - [Asynchronous Message Passing](./message_passing/async.md)
+  - [Synchronization](./message_passing/sync.md)
 	- [Storage and Lifetimes](./shared_mem/lifetimes.md)
 	- [Strategies](./shape/strategies.md)
 	- [Synchronization](./shape/sync.md)

@@ -22,37 +22,37 @@ Here is an example run.
 mpiexec ./bcast_prog
 Hello!
 Input for rank 0 was 'Hello!'
-Rank 16 recieved input 'Hello!'
-Rank 2 recieved input 'Hello!'
-Rank 4 recieved input 'Hello!'
-Rank 1 recieved input 'Hello!'
-Rank 8 recieved input 'Hello!'
-Rank 17 recieved input 'Hello!'
-Rank 18 recieved input 'Hello!'
-Rank 20 recieved input 'Hello!'
-Rank 3 recieved input 'Hello!'
-Rank 9 recieved input 'Hello!'
-Rank 10 recieved input 'Hello!'
-Rank 12 recieved input 'Hello!'
-Rank 5 recieved input 'Hello!'
-Rank 6 recieved input 'Hello!'
-Rank 24 recieved input 'Hello!'
-Rank 28 recieved input 'Hello!'
-Rank 11 recieved input 'Hello!'
-Rank 19 recieved input 'Hello!'
-Rank 21 recieved input 'Hello!'
-Rank 22 recieved input 'Hello!'
-Rank 25 recieved input 'Hello!'
-Rank 26 recieved input 'Hello!'
-Rank 7 recieved input 'Hello!'
-Rank 13 recieved input 'Hello!'
-Rank 14 recieved input 'Hello!'
-Rank 23 recieved input 'Hello!'
-Rank 27 recieved input 'Hello!'
-Rank 30 recieved input 'Hello!'
-Rank 15 recieved input 'Hello!'
-Rank 29 recieved input 'Hello!'
-Rank 31 recieved input 'Hello!'
+Rank 16 received input 'Hello!'
+Rank 2 received input 'Hello!'
+Rank 4 received input 'Hello!'
+Rank 1 received input 'Hello!'
+Rank 8 received input 'Hello!'
+Rank 17 received input 'Hello!'
+Rank 18 received input 'Hello!'
+Rank 20 received input 'Hello!'
+Rank 3 received input 'Hello!'
+Rank 9 received input 'Hello!'
+Rank 10 received input 'Hello!'
+Rank 12 received input 'Hello!'
+Rank 5 received input 'Hello!'
+Rank 6 received input 'Hello!'
+Rank 24 received input 'Hello!'
+Rank 28 received input 'Hello!'
+Rank 11 received input 'Hello!'
+Rank 19 received input 'Hello!'
+Rank 21 received input 'Hello!'
+Rank 22 received input 'Hello!'
+Rank 25 received input 'Hello!'
+Rank 26 received input 'Hello!'
+Rank 7 received input 'Hello!'
+Rank 13 received input 'Hello!'
+Rank 14 received input 'Hello!'
+Rank 23 received input 'Hello!'
+Rank 27 received input 'Hello!'
+Rank 30 received input 'Hello!'
+Rank 15 received input 'Hello!'
+Rank 29 received input 'Hello!'
+Rank 31 received input 'Hello!'
 ```
 
 This seems okay, but the memory-savvy reader may have noticed some concerning aspects of the above program.
@@ -74,15 +74,15 @@ Input for rank 0 was 'A long message.'
 ```
 
 In a shocking turn of events, the program does not segfault or silently overwrite unrelated memory.
-Instead, MPI detects that more characters were sent by the broadcaster that were expected by the recievers, prints out a descriptive error message, then gracefully ends the MPI launch.
+Instead, MPI detects that more characters were sent by the broadcaster that were expected by the receivers, prints out a descriptive error message, then gracefully ends the MPI launch.
 
 
 These sorts of error checks are why some people prefer message passing parallelism over shared memory parallelism - it makes debugging simpler.
 
-Of course, this still leaves the issue of how to recieve the broadcasted input.
-No matter what size we give to `message_buffer`, as long as that size is determined statically, a user could always send more characters than can be accomodated by the provided number of elements.
+Of course, this still leaves the issue of how to receive the broadcasted input.
+No matter what size we give to `message_buffer`, as long as that size is determined statically, a user could always send more characters than can be accommodated by the provided number of elements.
 
-What if, instead of sending the message first, we sent over the size of the message so that recievers could allocate an appropriately sized buffer?
+What if, instead of sending the message first, we sent over the size of the message so that receivers could allocate an appropriately sized buffer?
 
 
 ```cpp
@@ -95,37 +95,37 @@ This solution works as shown below.
 $ mpiexec ./bcast_prog_fixed
 Hello. Here is a string of arbitrary length.
 Input for rank 0 was 'Hello. Here is a string of arbitrary length.'
-Rank 2 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 4 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 8 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 1 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 16 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 18 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 24 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 5 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 6 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 9 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 10 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 12 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 17 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 20 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 3 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 21 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 26 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 28 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 7 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 11 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 13 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 14 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 19 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 22 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 25 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 23 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 30 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 15 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 27 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 29 recieved input 'Hello. Here is a string of arbitrary length.'
-Rank 31 recieved input 'Hello. Here is a string of arbitrary length.'
+Rank 2 received input 'Hello. Here is a string of arbitrary length.'
+Rank 4 received input 'Hello. Here is a string of arbitrary length.'
+Rank 8 received input 'Hello. Here is a string of arbitrary length.'
+Rank 1 received input 'Hello. Here is a string of arbitrary length.'
+Rank 16 received input 'Hello. Here is a string of arbitrary length.'
+Rank 18 received input 'Hello. Here is a string of arbitrary length.'
+Rank 24 received input 'Hello. Here is a string of arbitrary length.'
+Rank 5 received input 'Hello. Here is a string of arbitrary length.'
+Rank 6 received input 'Hello. Here is a string of arbitrary length.'
+Rank 9 received input 'Hello. Here is a string of arbitrary length.'
+Rank 10 received input 'Hello. Here is a string of arbitrary length.'
+Rank 12 received input 'Hello. Here is a string of arbitrary length.'
+Rank 17 received input 'Hello. Here is a string of arbitrary length.'
+Rank 20 received input 'Hello. Here is a string of arbitrary length.'
+Rank 3 received input 'Hello. Here is a string of arbitrary length.'
+Rank 21 received input 'Hello. Here is a string of arbitrary length.'
+Rank 26 received input 'Hello. Here is a string of arbitrary length.'
+Rank 28 received input 'Hello. Here is a string of arbitrary length.'
+Rank 7 received input 'Hello. Here is a string of arbitrary length.'
+Rank 11 received input 'Hello. Here is a string of arbitrary length.'
+Rank 13 received input 'Hello. Here is a string of arbitrary length.'
+Rank 14 received input 'Hello. Here is a string of arbitrary length.'
+Rank 19 received input 'Hello. Here is a string of arbitrary length.'
+Rank 22 received input 'Hello. Here is a string of arbitrary length.'
+Rank 25 received input 'Hello. Here is a string of arbitrary length.'
+Rank 23 received input 'Hello. Here is a string of arbitrary length.'
+Rank 30 received input 'Hello. Here is a string of arbitrary length.'
+Rank 15 received input 'Hello. Here is a string of arbitrary length.'
+Rank 27 received input 'Hello. Here is a string of arbitrary length.'
+Rank 29 received input 'Hello. Here is a string of arbitrary length.'
+Rank 31 received input 'Hello. Here is a string of arbitrary length.'
 ```
 
 
@@ -134,5 +134,5 @@ Rank 31 recieved input 'Hello. Here is a string of arbitrary length.'
 Remember that all memory is made up of bytes.
 Every struct, primitive, object, etc in a program is made up of a contiguous sequence of bytes.
 
-In C/C++, a `char` is exactly one byte, so by treating `message_size` as a buffer of `sizeof(messagesize)` bytes, one can use MPI to transfer the value of rank zero's `message_size` to the other ranks.
+In C/C++, a `char` is exactly one byte, so by treating `message_size` as a buffer of `sizeof(message_size)` bytes, one can use MPI to transfer the value of rank zero's `message_size` to the other ranks.
 

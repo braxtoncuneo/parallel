@@ -1,11 +1,11 @@
 # The Basics
 
-As noted in [the models of parallelism sub-chapter](../intro/models.md), the message passing model of parallelism isolates each execution context to its own memory space, with communication between execution contexts performed through explicit message passing actions that transfer objects from the sending thread to the recieving thread.
+As noted in [the models of parallelism sub-chapter](../intro/models.md), the message passing model of parallelism isolates each execution context to its own memory space, with communication between execution contexts performed through explicit message passing actions that transfer objects from the sending thread to the receiving thread.
 
 This model essentially represents the behavior of multiple, independent machines interacting with one another via network-based communication, but this is equally applicable to independent processes on the same machine communicating via sockets.
-After all, a process's execution context is a virtualized representation of a computer, with a seemingly isolated memory spaces.
+After all, a process's execution context is a virtualized representation of a computer, with seemingly isolated memory spaces.
 
-While shared-memory parallelism allows us to more efficiently communicate between execution contexts, it also allows us to more efficently create hard-to-find bugs.
+While shared-memory parallelism allows us to more efficiently communicate between execution contexts, it also allows us to more efficiently create hard-to-find bugs.
 In contrast, while multiprogramming on the same machine may lead to some inefficiency, the explicit nature of message passing makes it more obvious to developers when execution contexts can effect one another.
 In addition, the libraries that implement message passing interfaces can include checks to avoid common issues with communication.
 
@@ -14,10 +14,11 @@ In addition, the libraries that implement message passing interfaces can include
 MPI, the [Message Passing Interface](https://en.wikipedia.org/wiki/Message_Passing_Interface), is exactly what it sounds like - a standard interface for passing messages between processes.
 
 MPI was designed through the collaboration of many organizations interested in high performance computing.
-Since its inception, and with each subseqent version, the routines exposed through MPI represent a powerful toolbox of the most fundamental and useful message passing capabilities.
-It was also designed to work across many different languages, and has been ported to languages such as Java and Python.
+Since its inception, and with each subsequent version, the routines exposed through MPI have represented a powerful toolbox of the most fundamental and useful message passing capabilities.
+It was also designed to work across many languages, and has been ported to languages such as Java and Python.
 
-Unfortunately, as you may notice in the code examples to follow, this interface was also designed with C and Fortran at the forefront, and so the way it handles typing is perhaps less ergonomic than one would hope.
+Unfortunately, as you may notice in the code examples to follow, this interface was also designed to accommodate C and Fortran.
+Because of this, the way MPI handles typing is perhaps less ergonomic than one would hope.
 We will not venture too far into these more arcane corners of MPI, but proceed with the expectation that some pointer-related knowledge is assumed.
 
 
@@ -34,14 +35,14 @@ Let's break it down.
 ### MPI_Init
 
 `MPI_Init(&argc,&argv);` sets up the MPI context.
-As this function is evaluated, processes on the executing system coordinate with each-other to figure out how they should dcommunicate, how each process is uniquely identified, and other relevant information.
+As this function is evaluated, processes on the executing system coordinate with each-other to figure out how they should communicate, how each process is uniquely identified, and other relevant information.
 
 When launching an MPI program, some special arguments may be supplied to control how MPI behaves with its execution.
-On some MPI implementations, supplying argc/argv will cause MPI to remove MPI-related flags, making the parsing of non-MPI args easier.
+On some MPI implementations, supplying `argc`/`argv` will cause MPI to remove MPI-related flags, making the parsing of non-MPI args easier.
 If you aren't using one of those implementations, or you don't care, you can just give null pointers, like this: `MPI_Init(nullptr,nullptr);`
 
 Naturally, this sort of coordination cannot occur in a vacuum.
-Some system must already be established on the executing system to accomodate this coordination.
+Some system must already be established on the executing system to accommodate this coordination.
 In order to use MPI, it must be installed on the system in order to provide these facilities.
 
 `MPI_Init` may only be called once, and all communication through MPI must occur after this call.
@@ -49,7 +50,7 @@ In order to use MPI, it must be installed on the system in order to provide thes
 ### MPI_Comm_size
 
 In MPI, there are things called **communicators**, which represent a specific context associated with a specific group of processes.
-When processes communicate with one-another, that communication is coordinated through their communicators
+When processes communicate with one-another, that communication is coordinated through their communicators.
 
 Once an MPI program is initialized, it is given a communicator called `MPI_COMM_WORLD`, which includes all processes.
 
@@ -83,7 +84,7 @@ compilation terminated.
 ```
 
 In addition to requiring an MPI installation to be executable, MPI programs must be compiled by an MPI compiler.
-For c++, the `mpic++` command is reccomended:
+For c++, the `mpic++` command is reccommended:
 ```console
 mpic++ mpi_intro.cpp -o intro_prog
 ```
@@ -139,7 +140,7 @@ Now that is parallel!
 
 ## Inputs and Outputs
 
-Let's build off of this first program by taking input from the user.
+Let's build upon this first program by taking input from the user.
 
 ```cpp
 {{#include ./code/mpi_io.cpp}}
@@ -180,14 +181,14 @@ Input for rank 14 was ''
 Input for rank 28 was ''
 ```
 
-If the user ventures to provide `Hello World!` as input to this program, this additional output will be printed.
+If the user ventures to provide `Hello World!` as input through stdin, this additional output will be printed.
 
 ```console
 Input for rank 0 was 'Hello World!'
 ```
 
 It turns out that, in MPI, only rank 0 can read from the terminal through its standard input.
-All other ranks will recieve an end-of-input, which gets interpreted as an empty string by cin.
+All other ranks will receive an end-of-input, which gets interpreted as an empty string by `cin`.
 
 How can we get rid of these extra prints that report empty input?
 
