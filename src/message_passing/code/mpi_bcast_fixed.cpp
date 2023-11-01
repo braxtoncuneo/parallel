@@ -2,13 +2,6 @@
 #include <iostream>
 #include <string>
 
-struct MyStruct {
-    int a;
-    float b;
-    double c[10245];
-};
-
-
 int main(int argc, char* argv[]) {
 
     MPI_Init(&argc,&argv);

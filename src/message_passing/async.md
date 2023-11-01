@@ -65,10 +65,46 @@ Here is a fixed version of our overlapping-send program:
 
 ## MPI_Waitall
 
+```cpp
+int MPI_Waitall(int count, MPI_Request array_of_requests[], MPI_Status *array_of_statuses)
+```
+
+```cpp
+
+```
+
+```console
+
+```
+
+
+## MPI_Waitany
+
+```cpp
+int MPI_Waitany(int count, MPI_Request array_of_requests[], int *index, MPI_Status *status)
+```
+
+```cpp
+
+```
+
+```console
+
+```
 
 
 ## MPI_Test
 
+```cpp
+int MPI_Test(MPI_Request *request, int *flag, MPI_Status *status)
+```
 
+```cpp
+
+```
+
+```console
+
+```
 
 
