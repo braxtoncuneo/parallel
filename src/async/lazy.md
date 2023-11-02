@@ -1,5 +1,4 @@
-# Lazy Evaluation
-
+# Evaluation Strategies
 
 ## A Toy Problem: 1D Cellular Automata
 

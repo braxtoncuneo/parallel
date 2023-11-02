@@ -3,8 +3,8 @@
 
 ## Chapter Structure
 - [The Basics](./basic.md)
-- Evaluation strategy (coming soon)
 <!--
+- [Evaluation Strategies](./lazy.md)
 - [User Threading](./green.md)
 - [Lazy](./lazy.md)
 -->

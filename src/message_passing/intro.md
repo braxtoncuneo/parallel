@@ -11,8 +11,8 @@
 - [Scanning](./scanning.md)
 - [Reducing](./reducing.md)
 - [Custom Operations and Structs](./operations.md)
-<!--
 - [Asynchronous Message Passing](./async.md)
+<!--
 - [Synchronization](./sync.md)
 - [Windows](./windows.md)
 -->

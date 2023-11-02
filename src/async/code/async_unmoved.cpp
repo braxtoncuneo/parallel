@@ -19,7 +19,7 @@ void dependent(std::future<int> input){
 int main() {
     srand(time(NULL));
     std::future<int>  value_fut = std::async(dependency);
-    std::future<void> print_fut = std::async(dependent,&value_fut);
+    std::future<void> print_fut = std::async(dependent,value_fut);
     print_fut.get();
     return 0;
 }
