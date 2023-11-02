@@ -25,10 +25,10 @@
   - [Scanning](./message_passing/scanning.md)
   - [Reducing](./message_passing/reducing.md)
   - [Custom Operations and Structs](./message_passing/operations.md)
-<!--
-  - [Asynchronous Message Passing](./message_passing/async.md)
 - [Async Processing](./async/intro.md)
   - [The Basics](./async/basic.md)
+<!--
+  - [Asynchronous Message Passing](./message_passing/async.md)
   - [User Threads](./async/green.md)
   - [Lazy Evaluation](./async/lazy.md)
   - [Synchronization](./message_passing/sync.md)

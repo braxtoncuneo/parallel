@@ -1,0 +1,227 @@
+$ g++ async_unmoved.cpp -o async_unmoved -lpthread --std=c++20
+In file included from /opt/rh/gcc-toolset-12/root/usr/include/c++/12/stop_token:35,
+                 from /opt/rh/gcc-toolset-12/root/usr/include/c++/12/thread:40,
+                 from async_unmoved.cpp:1:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h: In instantiation of ‘std::thread::_Invoker<_Tuple>::_Invoker(_Args&& ...) [with _Args = {void (&)(std::future<int>), std::future<int>&}; _Tuple = std::tuple<void (*)(std::future<int>), std::future<int> >]’:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/future:1729:4:   required from ‘std::__future_base::_Async_state_impl<_BoundFn, _Res>::_Async_state_impl(_Args&& ...) [with _Args = {void (&)(std::future<int>), std::future<int>&}; _BoundFn = std::thread::_Invoker<std::tuple<void (*)(std::future<int>), std::future<int> > >; _Res = void]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/stl_construct.h:119:7:   required from ‘constexpr void std::_Construct(_Tp*, _Args&& ...) [with _Tp = __future_base::_Async_state_impl<thread::_Invoker<tuple<void (*)(future<int>), future<int> > >, void>; _Args = {void (&)(future<int>), future<int>&}]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/alloc_traits.h:635:19:   required from ‘static constexpr void std::allocator_traits<std::allocator<void> >::construct(allocator_type&, _Up*, _Args&& ...) [with _Up = std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (*)(std::future<int>), std::future<int> > >, void>; _Args = {void (&)(std::future<int>), std::future<int>&}; allocator_type = std::allocator<void>]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/shared_ptr_base.h:604:39:   required from ‘std::_Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp>::_Sp_counted_ptr_inplace(_Alloc, _Args&& ...) [with _Args = {void (&)(std::future<int>), std::future<int>&}; _Tp = std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (*)(std::future<int>), std::future<int> > >, void>; _Alloc = std::allocator<void>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/shared_ptr_base.h:971:16:   required from ‘std::__shared_count<_Lp>::__shared_count(_Tp*&, std::_Sp_alloc_shared_tag<_Alloc>, _Args&& ...) [with _Tp = std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (*)(std::future<int>), std::future<int> > >, void>; _Alloc = std::allocator<void>; _Args = {void (&)(std::future<int>), std::future<int>&}; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/shared_ptr_base.h:1712:14:   required from ‘std::__shared_ptr<_Tp, _Lp>::__shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<void>; _Args = {void (&)(std::future<int>), std::future<int>&}; _Tp = std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (*)(std::future<int>), std::future<int> > >, void>; __gnu_cxx::_Lock_policy _Lp = __gnu_cxx::_S_atomic]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/shared_ptr.h:464:59:   required from ‘std::shared_ptr<_Tp>::shared_ptr(std::_Sp_alloc_shared_tag<_Tp>, _Args&& ...) [with _Alloc = std::allocator<void>; _Args = {void (&)(std::future<int>), std::future<int>&}; _Tp = std::__future_base::_Async_state_impl<std::thread::_Invoker<std::tuple<void (*)(std::future<int>), std::future<int> > >, void>]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/shared_ptr.h:1009:14:   required from ‘std::shared_ptr<std::_NonArray<_Tp> > std::make_shared(_Args&& ...) [with _Tp = __future_base::_Async_state_impl<thread::_Invoker<tuple<void (*)(future<int>), future<int> > >, void>; _Args = {void (&)(future<int>), future<int>&}; _NonArray<_Tp> = _NonArray<__future_base::_Async_state_impl<thread::_Invoker<tuple<void (*)(future<int>), future<int> > >, void> >]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/future:1780:39:   required from ‘std::future<typename std::__invoke_result<typename std::decay<_Tp>::type, typename std::decay<_Args>::type ...>::type> std::async(launch, _Fn&&, _Args&& ...) [with _Fn = void (&)(future<int>); _Args = {future<int>&}; typename __invoke_result<typename decay<_Tp>::type, typename decay<_Args>::type ...>::type = void; typename decay<_Tp>::type = void (*)(future<int>)]’
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/future:1805:24:   required from ‘std::future<typename std::__invoke_result<typename std::decay<_Tp>::type, typename std::decay<_Args>::type ...>::type> std::async(_Fn&&, _Args&& ...) [with _Fn = void (&)(future<int>); _Args = {future<int>&}; typename __invoke_result<typename decay<_Tp>::type, typename decay<_Args>::type ...>::type = void; typename decay<_Tp>::type = void (*)(future<int>)]’
+async_unmoved.cpp:22:45:   required from here
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: error: no matching function for call to ‘std::tuple<void (*)(std::future<int>), std::future<int> >::tuple(void (&)(std::future<int>), std::future<int>&)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:39:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1259:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, std::pair<_U1, _U2>&&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1259 |         tuple(allocator_arg_t __tag, const _Alloc& __a, pair<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1259:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1251:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, std::pair<_U1, _U2>&&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1251 |         tuple(allocator_arg_t __tag, const _Alloc& __a, pair<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1251:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1244:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const std::pair<_U1, _U2>&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1244 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1244:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1236:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const std::pair<_U1, _U2>&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1236 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1236:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1229:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, std::tuple<_U1, _U2>&&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1229 |         tuple(allocator_arg_t __tag, const _Alloc& __a, tuple<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1229:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1221:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, std::tuple<_U1, _U2>&&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1221 |         tuple(allocator_arg_t __tag, const _Alloc& __a, tuple<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1221:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1212:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const std::tuple<_U1, _U2>&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1212 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1212:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1202:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const std::tuple<_U1, _U2>&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1202 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1202:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1196:9: note: candidate: ‘template<class _Alloc> constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, std::tuple<_T1, _T2>&&) [with _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1196 |         tuple(allocator_arg_t __tag, const _Alloc& __a, tuple&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1196:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1191:9: note: candidate: ‘template<class _Alloc> constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const std::tuple<_T1, _T2>&) [with _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1191 |         tuple(allocator_arg_t __tag, const _Alloc& __a, const tuple& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1191:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 3 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1184:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, _U1&&, _U2&&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1184 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1184:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 4 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1176:9: note: candidate: ‘template<class _Alloc, class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, _U1&&, _U2&&) [with _U1 = _Alloc; _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1176 |         tuple(allocator_arg_t __tag, const _Alloc& __a, _U1&& __a1, _U2&& __a2)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1176:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 4 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1169:9: note: candidate: ‘template<class _Alloc, bool _Dummy, typename std::enable_if<std::_TupleConstraints<_Dummy, void (*)(std::future<int>), std::future<int> >::__is_explicitly_constructible<void (* const&)(future<int>), const future<int>&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const _T1&, const _T2&) [with bool _Dummy = _Alloc; typename std::enable_if<std::_TupleConstraints<_Dummy, _T1, _T2>::__is_explicitly_constructible<const _T1&, const _T2&>(), bool>::type <anonymous> = _Dummy; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1169 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1169:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 4 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1161:9: note: candidate: ‘template<class _Alloc, bool _Dummy, typename std::enable_if<std::_TupleConstraints<_Dummy, void (*)(std::future<int>), std::future<int> >::__is_implicitly_constructible<void (* const&)(future<int>), const future<int>&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&, const _T1&, const _T2&) [with bool _Dummy = _Alloc; typename std::enable_if<std::_TupleConstraints<_Dummy, _T1, _T2>::__is_implicitly_constructible<const _T1&, const _T2&>(), bool>::type <anonymous> = _Dummy; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1161 |         tuple(allocator_arg_t __tag, const _Alloc& __a,
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1161:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 4 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1155:9: note: candidate: ‘template<class _Alloc, typename std::enable_if<std::_TupleConstraints<std::is_object<_Tp>::value, void (*)(std::future<int>), std::future<int> >::__is_implicitly_default_constructible(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::allocator_arg_t, const _Alloc&) [with typename std::enable_if<std::_TupleConstraints<std::is_object<_Alloc>::value, _T1, _T2>::__is_implicitly_default_constructible(), bool>::type <anonymous> = _Alloc; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1155 |         tuple(allocator_arg_t __tag, const _Alloc& __a)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1155:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   cannot convert ‘std::forward<void (&)(future<int>)>((* & __args#0))’ (type ‘void(std::future<int>)’) to type ‘std::allocator_arg_t’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1145:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::pair<_U1, _U2>&&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1145 |         tuple(pair<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1145:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘std::pair<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1137:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::pair<_U1, _U2>&&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1137 |         tuple(pair<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1137:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘std::pair<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1130:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(const std::pair<_U1, _U2>&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1130 |         tuple(const pair<_U1, _U2>& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1130:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1123:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(const std::pair<_U1, _U2>&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1123 |         tuple(const pair<_U1, _U2>& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1123:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘const std::pair<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1116:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::tuple<_U1, _U2>&&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1116 |         tuple(tuple<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1116:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘std::tuple<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1109:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(std::tuple<_U1, _U2>&&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1109 |         tuple(tuple<_U1, _U2>&& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1109:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘std::tuple<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1102:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(const std::tuple<_U1, _U2>&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_explicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1102 |         tuple(const tuple<_U1, _U2>& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1102:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘const std::tuple<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1095:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(const std::tuple<_U1, _U2>&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<true, _T1, _T2>::__is_implicitly_constructible<const _U1&, const _U2&>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1095 |         tuple(const tuple<_U1, _U2>& __in)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1095:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   mismatched types ‘const std::tuple<_T1, _T2>’ and ‘void(std::future<int>)’
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1084:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<std::_TupleConstraints<(! __is_alloc_arg<_U1>()), void (*)(std::future<int>), std::future<int> >::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(_U1&&, _U2&&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<(! __is_alloc_arg<_U1>()), _T1, _T2>::__is_explicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1084 |         tuple(_U1&& __a1, _U2&& __a2)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1084:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1082:66: error: no type named ‘type’ in ‘struct std::enable_if<false, bool>’
+ 1082 |                _ExplicitCtor<!__is_alloc_arg<_U1>(), _U1, _U2> = false>
+      |                                                                  ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1077:9: note: candidate: ‘template<class _U1, class _U2, typename std::enable_if<std::_TupleConstraints<(! __is_alloc_arg<_U1>()), void (*)(std::future<int>), std::future<int> >::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(_U1&&, _U2&&) [with _U2 = _U1; typename std::enable_if<std::_TupleConstraints<(! __is_alloc_arg<_U1>()), _T1, _T2>::__is_implicitly_constructible<_U1, _U2>(), bool>::type <anonymous> = _U2; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1077 |         tuple(_U1&& __a1, _U2&& __a2)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1077:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1075:66: error: no type named ‘type’ in ‘struct std::enable_if<false, bool>’
+ 1075 |                _ImplicitCtor<!__is_alloc_arg<_U1>(), _U1, _U2> = true>
+      |                                                                  ^~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1070:9: note: candidate: ‘template<bool _Dummy, typename std::enable_if<std::_TupleConstraints<_Dummy, void (*)(std::future<int>), std::future<int> >::__is_explicitly_constructible<void (* const&)(future<int>), const future<int>&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(const _T1&, const _T2&) [with bool _Dummy = _Dummy; typename std::enable_if<std::_TupleConstraints<_Dummy, _T1, _T2>::__is_explicitly_constructible<const _T1&, const _T2&>(), bool>::type <anonymous> = <anonymous>; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1070 |         tuple(const _T1& __a1, const _T2& __a2)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1070:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1068:64: error: no type named ‘type’ in ‘struct std::enable_if<false, bool>’
+ 1068 |                _ExplicitCtor<_Dummy, const _T1&, const _T2&> = false>
+      |                                                                ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1063:9: note: candidate: ‘template<bool _Dummy, typename std::enable_if<std::_TupleConstraints<_Dummy, void (*)(std::future<int>), std::future<int> >::__is_implicitly_constructible<void (* const&)(future<int>), const future<int>&>(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple(const _T1&, const _T2&) [with bool _Dummy = _Dummy; typename std::enable_if<std::_TupleConstraints<_Dummy, _T1, _T2>::__is_implicitly_constructible<const _T1&, const _T2&>(), bool>::type <anonymous> = <anonymous>; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1063 |         tuple(const _T1& __a1, const _T2& __a2)
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1063:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1061:64: error: no type named ‘type’ in ‘struct std::enable_if<false, bool>’
+ 1061 |                _ImplicitCtor<_Dummy, const _T1&, const _T2&> = true>
+      |                                                                ^~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1056:9: note: candidate: ‘template<bool _Dummy, typename std::enable_if<std::_TupleConstraints<_Dummy, void (*)(std::future<int>), std::future<int> >::__is_explicitly_default_constructible(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple() [with bool _Dummy = _Dummy; typename std::enable_if<std::_TupleConstraints<_Dummy, _T1, _T2>::__is_explicitly_default_constructible(), bool>::type <anonymous> = <anonymous>; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1056 |         tuple()
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1056:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 0 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1049:9: note: candidate: ‘template<bool _Dummy, typename std::enable_if<std::_TupleConstraints<_Dummy, void (*)(std::future<int>), std::future<int> >::__is_implicitly_default_constructible(), bool>::type <anonymous> > constexpr std::tuple<_T1, _T2>::tuple() [with bool _Dummy = _Dummy; typename std::enable_if<std::_TupleConstraints<_Dummy, _T1, _T2>::__is_implicitly_default_constructible(), bool>::type <anonymous> = <anonymous>; _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1049 |         tuple()
+      |         ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1049:9: note:   template argument deduction/substitution failed:
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/bits/std_thread.h:243:13: note:   candidate expects 0 arguments, 2 provided
+  243 |           : _M_t(std::forward<_Args>(__args)...)
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1090:17: note: candidate: ‘constexpr std::tuple<_T1, _T2>::tuple(std::tuple<_T1, _T2>&&) [with _T1 = void (*)(std::future<int>); _T2 = std::future<int>]’
+ 1090 |       constexpr tuple(tuple&&) = default;
+      |                 ^~~~~
+/opt/rh/gcc-toolset-12/root/usr/include/c++/12/tuple:1090:17: note:   candidate expects 1 argument, 2 provided
