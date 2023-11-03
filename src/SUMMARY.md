@@ -28,8 +28,8 @@
   - [Asynchronous Message Passing](./message_passing/async.md)
 - [Async Processing](./async/intro.md)
   - [The Basics](./async/basic.md)
-<!--
   - [Evaluation Strategies](./async/lazy.md)
+<!--
   - [User Threads](./async/green.md)
   - [Synchronization](./message_passing/sync.md)
 	- [Storage and Lifetimes](./shared_mem/lifetimes.md)
