@@ -2,8 +2,8 @@
 
 
 - [SIMD Processing](./simd.md)
+- [SIMT (GPU) Processing](./simt.md)
 <!--
-- [SIMT Processing](./simt.md)
 - [CUDA Basics](./basics.md)
 - [Synchronization](./sync.md)
 - [Memory](./mem.md)

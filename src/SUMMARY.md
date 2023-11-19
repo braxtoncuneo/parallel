@@ -31,8 +31,8 @@
   - [Evaluation Strategies](./async/lazy.md)
 - [SIMD/SIMT Processing](./simt/intro.md)
   - [SIMD Processing](./simt/simd.md)
+  - [SIMT (GPU) Processing](./simt/simt.md)
 <!--
-  - [GPU (SIMT) Processing](./simt/gpu.md)
   - [CUDA Basics](./simt/basics.md)
   - [Memory on GPUs](./simt/mem.md)
   - [Synchronization on GPUs](./simt/sync.md)
