@@ -61,4 +61,5 @@ int main(int argc, char *argv[]) {
 
     auto_throw(cudaFree(gpu_array));
     delete[] cpu_array;
+    return 0;
 }

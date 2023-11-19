@@ -42,4 +42,5 @@ int main(int argc, char *argv[]) {
     print_array(array,size);
 
     delete[] array;
+    return 0;
 }
