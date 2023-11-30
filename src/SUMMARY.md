@@ -33,7 +33,9 @@
   - [SIMD Processing](./simt/simd.md)
   - [SIMT (GPU) Processing](./simt/simt.md)
   - [CUDA Basics](./simt/basics.md)
+  - [Communication and Synchronization](./simt/comm.md)
 <!--
+  - [Reducing Divergence](./simt/tdr.md)
   - [Memory on GPUs](./simt/mem.md)
   - [Synchronization on GPUs](./simt/sync.md)
   - [Atomics on GPUs](./simt/atomics.md)
