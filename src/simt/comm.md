@@ -269,17 +269,30 @@ Each block still performs its per-block reduction, but each per-block total is a
 
 Reduction is only one application out of many, and it may present a rather optimistic view of atomics-based communication in a vaccuum.
 
-With scanning, atomics are less of a viable alternative to synchronization, since the output encompasses multiple values that rely upon different subsets of parallel operations
+With scanning, atomics are less of a viable alternative to synchronization, since the output encompasses many values that rely upon different subsets of the same parallel operations.
+
+For example, assuming an architecture with 2 threads per warp and kernels with 2 warps per block, the following would be the dependency graph of a possible on-GPU prefix-sum program processing an array of size 16:
 
 <div style="width: 70%; margin: auto;">
 
-![](./comm/gpu_dag_scan_global_coded.drawio.svg)
+![](./comm/gpu_dag_scan.drawio.svg)
 </div>
 
-<div style="width: 70%; margin: auto;">
+A general description of this algorithm is as follows:
 
-![](./comm/gpu_dag_scan_localized.drawio.svg)
-</div>
+1. To begin, each block-sized segment of the array is processed through a local prefix scan.
+2. From there, a prefix scan is performed over the final values of each prefix scan.
+3. The (N+1)th value of this second "tier" of this scan is then added to each value in the Nth block-sized segment in the first "tier", thus completing the prefix scan.
+
+There are several things that are good about this algorithm:
+- It segments the job into "chunks" of work that are well suited to the size of a block
+- It is scalable: additional "tiers" may be added to deal with larger arrays, with N tiers capable of scanning up to 4^N values
+
+However, it cannot be easily translated into atomics.
+Any tier beyond the first could potentially be replaced by having each block atomically add its total to the output values of all elements after it.
+This would require a separate output buffer to accumulate into in order to avoid race conditions.
+This would also result in O(N^2) atomic operations for an array of size N, which is not scalable and would result in bottlenecking around memory bandwidth.
+In this case, paying the price of global synchronization is likely the better strategy.
 
 ## Producer-Consumer Patterns
 
