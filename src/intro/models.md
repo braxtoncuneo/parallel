@@ -131,7 +131,8 @@ Processing multiple pieces of data at a time generally requires more register st
 <!--slider row-split-->
 
 <!--slider web-->
-<div style="width: 50%">
+<div style="width: 100%; display:flex">
+<div style="flex-grow:1">
 <!--slider both-->
 
 ![](./models/SISD.svg)
@@ -145,7 +146,7 @@ Processing multiple pieces of data at a time generally requires more register st
 
 
 <!--slider web-->
-<div style="width: 50%">
+<div style="flex-grow:1">
 <!--slider both-->
 
 
@@ -160,7 +161,7 @@ Processing multiple pieces of data at a time generally requires more register st
 
 
 <!--slider web-->
-<div style="width: 50%">
+<div style="flex-grow:1">
 <!--slider both-->
 
 
@@ -174,7 +175,7 @@ Processing multiple pieces of data at a time generally requires more register st
 <!--slider cell-split-->
 
 <!--slider web-->
-<div style="width: 50%">
+<div style="flex-grow:1">
 <!--slider both-->
 
 
@@ -182,6 +183,101 @@ Processing multiple pieces of data at a time generally requires more register st
 
 <!--slider web-->
 </div>
+</div>
 <!--slider both-->
+
+<!--slider split-->
+<!--slider web-->
+## Laws of Performance
+
+One of the core reasons parallelism is applied in computing is to support the performance of applications.
+To support our understanding of performance, we'll breifly discuss three important "laws" of performance that have been established.
+
+<!--slider both-->
+
+
+### Moore's Law
+
+
+Established by Gordon Moore, an influential figure from the microprocessor industry, [Moore's law](https://en.wikipedia.org/wiki/Moore%27s_law) was an observation that the density of transistors in integrated circuits doubled roughly every two years.
+Since then, the rate of transistor densification has been revised downward several times, with [some industry leaders](https://www.marketwatch.com/story/moores-laws-dead-nvidia-ceo-jensen-says-in-justifying-gaming-card-price-hike-11663798618) even claiming that Moore's law is dead.
+The importance of this densification is that the cost of producing denser integrated circuits generally does not increase as quickly as the resulting speed/efficiency gains.
+In fact, thanks to [dennard scaling](https://en.wikipedia.org/wiki/Dennard_scaling), much of the densification that occured prior to 2006 came with corresponding increase of speed/efficiency.
+
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Moore%27s_Law_Transistor_Count_1970-2020.png/2560px-Moore%27s_Law_Transistor_Count_1970-2020.png)
+
+In addition to denser transistors, the speed of a processor can be increased by increasing the clock rate alongside operating voltage.
+While this does work, this consumes more power and requires the dissipation of addititonal heat.
+
+At the time of writing, integrated circuit manufacturers are still making some progress in increased performance/efficiency, but increasing density now requires significantly more innovation and capital expenditure.
+This and the practical upward limits on power production and heat dissipation make traditional increases in processor performance much more difficult.
+
+
+<!--slider split-->
+### Amdahl's Law
+
+As the old world of Gordon Moore dies, a new one struggles to be born.
+With traditional growth in computation becoming more expensive, science and industry focused on other ways to speed up computers.
+
+Gene Amdahl, another important figure in early computing, observed that:
+ - different parts of a program can be optimized
+ - optimization can reduce the amount of time it takes for the optimized part of the program to run
+ - how much optimization affects a program's performance depends upon how much time the optimized part of the program originally took to run
+
+While this law is applicable in contexts outside of parallelism, it is an important to parallelism specifically because it can model the performance of a program as it is parallelized.
+
+Consider a program consisting of two parts:
+ - One part of the program consists of one indivisible unit of processing that must be executed serially (without parallelism) before any other part of the program.
+ - Another part of th program consists of 12 indivisible units that may be independently executed in parallel.
+ - Each "unit" of processing takes exactly one unit of time to execute.
+
+Given this scheme, the program could be accellerated by distributing the parallelizable tasks across multiple processors.
+Whereas a single processor could execute the program in 1+12 time units, two processors could execute the program in 1 + 12/2 time steps.
+With 12 processors, the program's runtime could be reduced to 2 time units, producing a speedup of 6.5.
+
+<div style="width: 80%; margin: auto;">
+
+![](./models/amdahls_law_naive.svg)
+
+</div>
+
+If the parallel processing could be further subdivided to an arbitrary scale, then these speedups can be plotted for any processor count:
+
+![](./models/amdahls_law.svg)
+
+
+Given a program that:
+- takes **T** time units to run
+- has a part that can be parallelized which causes **Tp** of the overall runtime
+
+...parallelizing this portion of the program to run **s** times faster only scales down **Tp** of the runtime, with the serial **T(1-p)** of the runtime remaining the same.
+
+
+![](./models/amdahls_law_speedup.svg)
+
+The speedup of such a parallelization follows this formula:
+
+<div style="width: 80%; margin: auto;">
+
+![](./models/amdahls_law.png)
+
+</div>
+
+<!--slider split-->
+### Gustafson's Law
+
+In some respects, Amdahl's Law could be considered pessimistic, since the addition of processors leads to less performance gains as the runtime of the parallelized proportion decreases.
+However, as the parallelizable proportion of a program's runtime grows, these diminishing returns become less of an issue.
+
+In 1988, John Gustafson and Edwin Barsis observed that the parallelizable proportion of most programs grew with their workload, and usually the serial proportion grew very little (if at all) with workload.
+Hence, as the size of problems grow, the benefits they could achieve from additional parallelism usually increases.
+
+![](./models/gustafsons_law.svg)
+
+This more "optimistic" view of parallelism shows that additional processing power can provide a lot of benfit.
+This is especially true since humans tend to increase the workload of programs with more data whenever it is useful and feasible to do so.
+
+The growing presence and influence of parallelism in computers, as seen in the rise of GPUs and many-core CPUs, is testament to the precience of these almost 50-year-old predictions.
+
 
 
