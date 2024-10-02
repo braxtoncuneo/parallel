@@ -22,7 +22,7 @@ Your crop of choice is corn, and the process of generating one unit of corn is:
 
 This process involves the operations:
 - sow seeds
-- water 
+- water
 - harvest
 
 These operations must be evaluated in the order (sow,water,harvest), because each watering relies upon the effects of sowing seeds and each harvesting relies upon the effect of a watering.
@@ -202,7 +202,7 @@ As long as the inputs are known ahead of time, the execution of any algorithm ca
 Consequently, the implementation of an algorithm must respect the structure of dependencies that arise with each valid input.
 
 These dependency structures are particularly relevant to parallel/concurrent software developers because they specify which sets of operations can be executed concurrently and which sets of operations must be executed in a certain order.
-By thinking of an algorithm in terms of its dependency structures, software developers can more easily find opportunities to make its execution faster and can more easily detect **race conditions**. 
+By thinking of an algorithm in terms of its dependency structures, software developers can more easily find opportunities to make its execution faster and can more easily detect **race conditions**.
 
 With enough practice, an experienced programmer can develop an intuitive understanding of how different algorithms map to different dependency structures, leading to faster and smoother development.
 This intuition can look like magic to other developers, and can help you stand out in the work force.
@@ -238,8 +238,65 @@ For this course, we will use the following notation:
 
 If a dependency includes the use of one operation's output as another operation's input, the intermediate value may be displayed as a black hexagon overlaid on the corresponding arrow, as shown in the farming diagrams.
 
-Later in this book, additional notation conventions will be added.
+### Thinking about Conditions
 
+
+Traditional dependency DAGs depend upon all inputs being known ahead of time.
+To aid understanding of how unknown inputs affect programs, and to support the portrayal of these scenarios in future diagrams, let us consider an augmented notation:
+
+
+<div style="width: 100%; display:flex">
+<div style="flex:1.5">
+
+![](./shape/cond_dag.drawio.svg)
+
+</div>
+<div style="flex:1">
+
+![](./shape/loop_dag.drawio.svg)
+
+</div>
+</div>
+
+
+In cases where the operations that should be performed depend upon an unknown quantity, we could assign a color to each possible set of operations that depend upon a condition.
+
+We can imagine that all operations exist within the constructed DAG, but only operations that are "turned on" by a condition actually affect the DAG.
+
+With this notation for conditions, loops can be represented via recursion, with the loop condition triggering the evaluation by the loop body and the recursive evaluation of the condition/body.
+
+<!--slider slide-->
+
+### Thinking about Conditions
+
+<div style="width: 100%; display:flex">
+<div style="flex:1.5">
+
+![](./shape/cond_dag.drawio.svg)
+
+</div>
+<div style="flex:3">
+
+ - Color components of DAG based upon the conditions that would cause them to be used
+ <br/>
+
+ - Only have components "count" as part of the DAG when the corresponding condition has a matching result
+
+ <br/>
+
+ - Alternative perspective: The full DAG is not known, and conditions "discover" new parts of the DAG as they are resolved
+
+</div>
+<div style="flex:1">
+
+![](./shape/loop_dag.drawio.svg)
+
+</div>
+</div>
+
+<!--slider both-->
+<!--slider split-->
+<!--slider web-->
 ### Establishing Bounds
 
 In our corn-farming problem, we found there is a maximum number of farmers that could work simultaneously and that there was a minimum amount of time required to complete the desired harvest.

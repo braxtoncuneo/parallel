@@ -186,6 +186,8 @@ Processing multiple pieces of data at a time generally requires more register st
 </div>
 <!--slider both-->
 
+[Flynn's Taxonomy Diagrams by Cburnett](https://commons.wikimedia.org/wiki/File:SISD.svg)
+
 <!--slider split-->
 <!--slider web-->
 ## Laws of Performance
@@ -198,13 +200,25 @@ To support our understanding of performance, we'll breifly discuss three importa
 
 ### Moore's Law
 
+<!--slider web-->
 
 Established by Gordon Moore, an influential figure from the microprocessor industry, [Moore's law](https://en.wikipedia.org/wiki/Moore%27s_law) was an observation that the density of transistors in integrated circuits doubled roughly every two years.
 Since then, the rate of transistor densification has been revised downward several times, with [some industry leaders](https://www.marketwatch.com/story/moores-laws-dead-nvidia-ceo-jensen-says-in-justifying-gaming-card-price-hike-11663798618) even claiming that Moore's law is dead.
 The importance of this densification is that the cost of producing denser integrated circuits generally does not increase as quickly as the resulting speed/efficiency gains.
 In fact, thanks to [dennard scaling](https://en.wikipedia.org/wiki/Dennard_scaling), much of the densification that occured prior to 2006 came with corresponding increase of speed/efficiency.
 
+<!--slider slide-->
+<div style="width: 60%; margin: auto;">
+<!--slider both-->
+
 ![](https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Moore%27s_Law_Transistor_Count_1970-2020.png/2560px-Moore%27s_Law_Transistor_Count_1970-2020.png)
+
+
+[Diagram by Max Roser, Hannah Ritchie](https://commons.wikimedia.org/wiki/File:Moore%27s_Law_Transistor_Count_1970-2020.png)
+
+<!--slider slide-->
+</div>
+<!--slider web-->
 
 In addition to denser transistors, the speed of a processor can be increased by increasing the clock rate alongside operating voltage.
 While this does work, this consumes more power and requires the dissipation of addititonal heat.
@@ -212,9 +226,12 @@ While this does work, this consumes more power and requires the dissipation of a
 At the time of writing, integrated circuit manufacturers are still making some progress in increased performance/efficiency, but increasing density now requires significantly more innovation and capital expenditure.
 This and the practical upward limits on power production and heat dissipation make traditional increases in processor performance much more difficult.
 
-
+<!--slider both-->
 <!--slider split-->
 ### Amdahl's Law
+<!--slider row-split-->
+
+<!--slider web-->
 
 As the old world of Gordon Moore dies, a new one struggles to be born.
 With traditional growth in computation becoming more expensive, science and industry focused on other ways to speed up computers.
@@ -226,25 +243,34 @@ Gene Amdahl, another important figure in early computing, observed that:
 
 While this law is applicable in contexts outside of parallelism, it is an important to parallelism specifically because it can model the performance of a program as it is parallelized.
 
+<!--slider both-->
 Consider a program consisting of two parts:
  - One part of the program consists of one indivisible unit of processing that must be executed serially (without parallelism) before any other part of the program.
  - Another part of th program consists of 12 indivisible units that may be independently executed in parallel.
  - Each "unit" of processing takes exactly one unit of time to execute.
+<!--slider web-->
 
 Given this scheme, the program could be accellerated by distributing the parallelizable tasks across multiple processors.
 Whereas a single processor could execute the program in 1+12 time units, two processors could execute the program in 1 + 12/2 time steps.
 With 12 processors, the program's runtime could be reduced to 2 time units, producing a speedup of 6.5.
 
+<!--slider both-->
+
+<!--slider cell-split 2-->
 <div style="width: 80%; margin: auto;">
 
 ![](./models/amdahls_law_naive.svg)
 
 </div>
 
+<!--slider split-->
+
 If the parallel processing could be further subdivided to an arbitrary scale, then these speedups can be plotted for any processor count:
+
 
 ![](./models/amdahls_law.svg)
 
+<!--slider split-->
 
 Given a program that:
 - takes **T** time units to run
@@ -252,10 +278,14 @@ Given a program that:
 
 ...parallelizing this portion of the program to run **s** times faster only scales down **Tp** of the runtime, with the serial **T(1-p)** of the runtime remaining the same.
 
+<!--slider row-split-->
 
 ![](./models/amdahls_law_speedup.svg)
 
+<!--slider cell-split-->
+
 The speedup of such a parallelization follows this formula:
+
 
 <div style="width: 80%; margin: auto;">
 
@@ -266,13 +296,27 @@ The speedup of such a parallelization follows this formula:
 <!--slider split-->
 ### Gustafson's Law
 
+<!--slider web-->
+
 In some respects, Amdahl's Law could be considered pessimistic, since the addition of processors leads to less performance gains as the runtime of the parallelized proportion decreases.
 However, as the parallelizable proportion of a program's runtime grows, these diminishing returns become less of an issue.
 
 In 1988, John Gustafson and Edwin Barsis observed that the parallelizable proportion of most programs grew with their workload, and usually the serial proportion grew very little (if at all) with workload.
 Hence, as the size of problems grow, the benefits they could achieve from additional parallelism usually increases.
 
+<!--slider slide-->
+
+As more of a program's work becomes parallelizable, the benefits of parallelism increase.
+
+For example, consider a program with onoe unit of serial work and one unit of parallelizable work.
+
+Increase the amount of parallelizable work by one unit and track the change in speedup from parallelization.
+
+<!--slider both-->
+
 ![](./models/gustafsons_law.svg)
+
+<!--slider web-->
 
 This more "optimistic" view of parallelism shows that additional processing power can provide a lot of benfit.
 This is especially true since humans tend to increase the workload of programs with more data whenever it is useful and feasible to do so.
