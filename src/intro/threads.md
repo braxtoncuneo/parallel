@@ -20,7 +20,7 @@ Thrilling stuff, I know.
 
 <!--slider row-split-->
 
-An executable is a program that has been translated to machine code for direct execution by a processor. Executables are typically created by running a compiler on human-readable programs. 
+An executable is a program that has been translated to machine code for direct execution by a processor. Executables are typically created by running a compiler on human-readable programs.
 
 Here's a hex dump of our three-line C++ program's executable. As you can see, it isn't very easy to read:
 
@@ -35,7 +35,7 @@ Here's a hex dump of our three-line C++ program's executable. As you can see, it
 <!--slider cell-split-->
 
 If you want to have a lower-level view of your program, most compilers have options to output the assembly corresponding to its binary output.
-This is what gcc returned for our three-line program: 
+This is what gcc returned for our three-line program:
 
 <div style="height: 10em; overflow: scroll;">
 
@@ -155,7 +155,7 @@ Most Thread APIs have the following features:
 - Thread handles   : Objects that identify/represent specific threads.
 - Thread creation  : Starting a new thread and receiving a handle for it.
 - Thread joining   : Waiting in one thread for a thread to complete.
-- Thread detaching : Notifying the OS/API that no other threads will wait for a specific thread to complete (so it can clean up after itself) 
+- Thread detaching : Notifying the OS/API that no other threads will wait for a specific thread to complete (so it can clean up after itself)
 
 <!--slider split-->
 <!--slider slide-->
@@ -170,7 +170,7 @@ Most Thread APIs have the following features:
 - Thread handles   : Objects that identify/represent specific threads.
 - Thread creation  : Starting a new thread and receiving a handle for it.
 - Thread joining   : Waiting in one thread for a thread to complete.
-- Thread detaching : Notifying the OS/API that no other threads will wait for a specific thread to complete (so it can clean up after itself) 
+- Thread detaching : Notifying the OS/API that no other threads will wait for a specific thread to complete (so it can clean up after itself)
 
 <!--slider cell-split-->
 
@@ -239,7 +239,7 @@ The program's output:
 
 <!--slider web-->
 
-### A More Involved Example 
+### A More Involved Example
 
 Here's a program with a bit more application involved:
 ```cpp
@@ -252,6 +252,17 @@ The text used is the first argument of the program or, if no argument is provide
 This program is evaluated through two threads.
 The main thread spawns a watcher thread that will set a boolean to `true` and terminate once the user has hit enter.
 As the watcher thread waits, the main thread loops through different element rotations of a message, printing them 0.1 seconds apart.
+
+### Thread Teams
+
+Also, since threads are represented as objects in the C++ thread api, teams of threads can be organized via arrays/collections of thread objects.
+
+For example, this program creates a team of threads that prints their thread IDs until the user presses enter:
+
+```cpp
+{{#include ./threads/thread_team.cpp}}
+```
+
 
 <!--slider both-->
 

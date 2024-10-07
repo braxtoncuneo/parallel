@@ -8,9 +8,24 @@ Given these facts, getting the best performance for a particular computation inv
 To tackle this problem, computer scientists have developed several operation/thread assignment strategies.
 
 <!--slider split-->
+## Types of Parallelism
+
+Parallelism can be classified into different categories, including:
+ - bit-level parallelism
+ - instruction-level parallelism
+ - data parallelism
+ - task parallelism
+
+We will focus on **data** and **task parallelism**.
+To breifly explain bit-level/instruction-level parallelism:
+
+ - **bit-level parallelism**: The parallelism achieved by increasing the word size of a machine (think 32-bit vs 64 bit). As the bit width increases, more processing is occuring at the same time for a given operation.
+ - **instruction-level parallelism**: The parallelism achieved by processors that overlap the processing of instructions. A notable example of this is the speculative execution used by many modern processors.
+
+<!--slider split-->
 
 <!--slider web-->
-## Task Parallelism
+### Task Parallelism
 
 If a computation is made up of a set of mostly-independent tasks, the operations of that computation can be effectively subdivided by the corresponding task. Generally speaking, in order to count as task parallelism, the tasks need to be different from each-other.
 
@@ -33,7 +48,7 @@ If a computation is made up of a set of mostly-independent tasks, the operations
 <!--slider split-->
 
 <!--slider web-->
-## Data Parallelism
+### Data Parallelism
 
 If a computation requires processing many pieces of data, and very little communication is required between the operations that process different pieces of data, the operations of that computation can be effectively divided by their corresponding data.
 
@@ -55,7 +70,7 @@ If a computation requires processing many pieces of data, and very little commun
 <!--slider split-->
 
 <!--slider web-->
-## Task and Data Parallelism ?
+### Task and Data Parallelism ?
 
 If a computation has independence both between the different tasks it performs and between the different data it processes, both task and data parallelism can be applied simultaneously.
 Realistically, most parallel processing patterns are both task and data parallel in some respect, but if one factor obviously dominates the decision of how to break up operations, it is common to simply describe it as that form of parallelism.
@@ -73,6 +88,44 @@ Realistically, most parallel processing patterns are both task and data parallel
 </div>
 
 <br>
+
+
+<!--slider split-->
+## Structures of Parallelism
+
+**Data** and **task parallelism** can be implemented in a variety of ways, and which method is "best" depends upon the structure of dependencies in the processing that must occur.
+In this sub-chapter, we will be covering:
+
+ - Fork and Join
+ - Pipeline Parallelism
+ - Divide and Conquer
+ - Map and Reduce
+
+
+
+<!--slider split-->
+<!--slider web-->
+
+## Fork and Join
+
+If a computation involves the execution of many independent operations between a common dependency and dependent, each of these independent operations could be subdivided across multiple threads.
+To perform this subdivision, a pre-existing thread must create the remaining required threads and assign work to them during creation.
+For this strategy to make sense, the cost of creating, synchronizing, and terminating these threads should be lower than the cost of executing all the independent operations serially.
+
+<br>
+
+<!--slider slide-->
+<div style="width: 70%; margin: auto;">
+<!--slider web-->
+<div style="width: 80%; margin: auto;">
+<!--slider both-->
+
+![](./shape/fork_and_join.drawio.svg)
+
+</div>
+
+<br>
+
 
 <!--slider split-->
 
@@ -96,27 +149,6 @@ In order for this strategy to be effective, the mechanism used to synchronize ex
 
 <br>
 
-<!--slider split-->
-<!--slider web-->
-
-## Fork and Join
-
-If a computation involves the execution of many independent operations between a common dependency and dependent, each of these independent operations could be subdivided across multiple threads.
-For this strategy to make sense, the cost of creating, synchronizing, and terminating these threads should be lower than the cost of executing all the independent operations serially.
-
-<br>
-
-<!--slider slide-->
-<div style="width: 70%; margin: auto;">
-<!--slider web-->
-<div style="width: 80%; margin: auto;">
-<!--slider both-->
-
-![](./shape/fork_and_join.drawio.svg)
-
-</div>
-
-<br>
 
 
 <!--slider split-->
