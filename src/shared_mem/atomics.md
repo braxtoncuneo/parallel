@@ -1,14 +1,59 @@
 # Atomics
 
+
+<!--slider web-->
+
 Now that we are acquainted with synchronization, a natural question to ask is "when do we *not* have to wait in order to communicate between threads?"
 After all, how can we meaningfully use a piece of storage if we do not know what operations have already used it?
 
+
+<!--slider both-->
+
+We don't always have to wait for other threads whenever we need to coordinate with them.
+We just need to avoid modifying storage that other threads use during times they don't "expect" it to change.
+
+There are multiple ways to avoid this:
+
+- Never share the memory in the first place, performing separate "bookkeeping" in each thread
+- Make threads wait their turn to read/write storage, protecting them through synchronization primitives
+- Expect memory to potentially change, and react appropriately
+
+
+<!--slider split-->
+
+<!--slider slide-->
+
+# Atomics
+
+
+<!--slider web-->
+
 Initially, we may suspect that this is impossible, but this depends upon what we care about.
-Do we care if a specific operation has occured with that sotrage, or do we only care that the *side effects* of each operation carries over to subsequent operations?
+Do we care if a specific operation has occured with that storage, or do we only care that the *side effects* of each operation carries over to subsequent operations?
 
 If we only care about preserving side effects, the order of these operations is not as important.
 
+
+<!--slider slide-->
+
+- Initially, we may suspect that this is impossible, but this depends upon what we care about.
+
+- Do we care if a specific operation has occured with that storage, or do we only care that the *side effects* of each operation carries over to subsequent operations?
+
+- If we only care about preserving side effects, the order of these operations is not as important.
+
+
+<!--slider both -->
+
+<!--slider split-->
+
+
+
 ## The Basics
+
+<!--slider row-split-->
+
+<!--slider web-->
 
 An atomic operation is an operation that is *indivisible* to all relevant observers. {{footnote: This relates to the original theory of atoms, which thought of atoms as indivisible units of matter.}}
 While an atomic operation could succeed or fail, it may never be observed as partway through execution.
@@ -21,7 +66,38 @@ A classic example of non-atomicity, and how that can cause problems, is the mult
 
 The central reason *why* we needed to use synchronization was that the `++` operation was **not atomic**.
 
+
+<!--slider slide-->
+
+An atomic operation is an operation that is *indivisible* to all relevant observers. {{footnote: This relates to the original theory of atoms, which thought of atoms as indivisible units of matter.}}
+While an atomic operation could succeed or fail, it may never be observed as partway through execution.
+
+A classic example of non-atomicity, and how that can cause problems, is the multiple-adders scenario shown in the [synchronization](./sync.md) sub-chapter:
+
+The central reason *why* we needed to use synchronization was that the `++` operation was **not atomic**.
+
+
+<!--slider cell-split-->
+
+```cpp
+{{#include ./sync/mutex_test_0.cpp}}
+```
+
+
+<!--slider both-->
+
+<!--slider split-->
+
+
+<!--slider slide-->
+
+## The Basics
+
+<!--slider both-->
+
+
 Typically, atomic APIs represent atomic operations as acting on some object in memory (**A**) given a set of operands (**B**, **C**, ...), returning the original value of that object (**X**) immediately prior to whatever occurs with the operation.
+
 
 ```cpp
 // An int, wrapped by C++'s atomic template, which provides atomic operations
@@ -40,6 +116,8 @@ int B = 2;
 // A prototypical procedural interface for atomic addition
 int X = atomic_add(&A,B);
 ```
+
+<!--slider split-->
 
 ## Interpreting Output
 
@@ -60,10 +138,29 @@ int X = A.fetch_add(B);
 int Y = X + B;
 ```
 
+<!--slider split-->
+
+<!--slider slide-->
+
+## Interpreting Output
+
+<!--slider both-->
+
+
 This approach gives us a small "snapshot" of the shared value's life, showing a single transition from one state to another state.
 
 
+
 ![](./atomics/Transition.svg)
+
+
+<!--slider split-->
+
+<!--slider slide-->
+
+## Interpreting Output
+
+<!--slider both-->
 
 Importantly, unless we are applying mathematical/algorithmic tricks to guarantee otherwise, **we can only interpret this transition in isolation**.
 For example, if we performed two atomic additions in a row and determined that these two transitions occurred:
@@ -74,13 +171,40 @@ it would be very tempting to think that something like this occurred
 
 ![](./atomics/ABA_Problem_Naive.svg)
 
+
+<!--slider split-->
+
+<!--slider slide-->
+
+## Interpreting Output
+
+Importantly, unless we are applying mathematical/algorithmic tricks to guarantee otherwise, **we can only interpret this transition in isolation**.
+For example, if we performed two atomic additions in a row and determined that these two transitions occurred:
+
+![](./atomics/ABA_Problem.svg)
+
+<!--slider both-->
+
 but this sequence of state transitions is also possible!
 
 ![](./atomics/ABA_Problem_Real.svg)
 
+<!--slider split-->
+
+<!--slider slide-->
+
+## Interpreting Output
+
+![](./atomics/ABA_Problem_Naive.svg)
+
+![](./atomics/ABA_Problem_Real.svg)
+
+<!--slider both-->
 We cannot distinguish between an object *staying* as a value and that object *returning* to that value before the next time we use it.
 This is known as the ABA problem, and it has caused countless problems for unwary parallel programmers.
 As you venture into atomics, always keep the ABA problem in mind, lest you suffer a terrible fate.
+
+<!--slider split-->
 
 ## Atomic Addition
 
@@ -88,7 +212,6 @@ With this transition-based model in mind, how can we think of atomic addition?
 To limit the set of transitions to something reasonable, let's only think about adding 1 and adding -1.
 
 ![](./atomics/atomic_map_line.drawio.svg)
-<!--slider split-->
 
 With these two possible inputs into an atomic addition, we can reliably move a value up and down the number line.
 By adding 1, we may move the state up by one position on the number line.
@@ -97,6 +220,7 @@ Likewise, adding -1 moves the state down by one position on the number line.
 Note that we may not be able to guarantee what original state we are adding to or subtracting from.
 Without any algorithmic guarantees, we can only enforce relative movement, rather than absolute position.
 
+<!--slider split-->
 
 ### Sempaphores through Atomics
 
@@ -104,6 +228,8 @@ A classic use case of atomic addition is semaphores.
 As shown in the synchronization sub-chapter, semphores operate through basic additions and subtractions of a counter.
 
 ![](./atomics/atomic_line_semiphore.drawio.svg)
+
+<!--slider web-->
 
 The number we add to the counter (1 or -1) is determined by the action being performed on the semaphore.
 
@@ -117,6 +243,9 @@ Otherwise, the thread must wake up one thread waiting on the semaphore, giving i
 
 Note that, under this scheme, threads choose the *type* of transition based upon the action they need to perform, but they cannot control the *specific* transition they will cause.
 An important part of programming with atomics is knowing what different state transitions mean and providing logic to resolve the responsibility that comes with each transition.
+
+<!--slider both-->
+
 <!--slider split-->
 
 
@@ -130,10 +259,16 @@ A **binary sempahore** is a semaphore that starts with a counter set to 1, repre
 A binary semaphore is essentially a slightly more powerful version of a mutex.
 Whereas a mutex must always be unlocked by the thread that locked it, a binary semaphore may be released by any thread.
 
+<!--slider web-->
+
 For obvious reasons, we do not want to let multiple threads acquire the semaphore at the same time.
 What could we need to do to guarantee this?
 
+<!--slider both-->
+
 ![](./atomics/atomic_line_binary_semiphore_bounds.drawio.svg)
+
+<!--slider web-->
 
 One potential option is to require the user to never release the semaphore in a way that would make the counter go above 1.
 If a program violates this rule, we could specify in our documentation that this results in "undefined behavior".
@@ -150,6 +285,8 @@ If there is a third thread, its decrement would look like a valid acquisition, a
 
 However, what if there is no third thread, or (equivalently) what if some combination of acquisitions and releases results in the counter reaching 1 immediately before the fixing decrement occurs? In this case, there must be at least one thread waiting on the semaphore, and the fixing decrement has effectively claimed the sempahore on its behalf. The thread performing the fixing decrement simply needs to wake one thread before its bad acquisition attempt resolves.
 
+<!--slider both-->
+
 <!--slider split-->
 
 ### Implementing a Barrier?
@@ -158,6 +295,12 @@ Armed with this knowledge of atomic addition, we may be tempted to implement a b
 For example, consider the scheme illustrated below.
 
 ![](./atomics/atomic_line_semiphore_bounds.drawio.svg)
+
+<!--slider slide-->
+
+It turns out, this scheme would not work without some additional bookkeeping/synchronization.
+
+<!--slider web-->
 
 With this scheme:
 - Threads waiting on the barrier decrement the counter
@@ -169,6 +312,8 @@ However, what if the set of threads that use a barrier change between phases? Th
 To fix this issue, we may be tempted to fix things like the binary semaphore, but this does not work because we cannot treat decrements to this counter interchangeably.
 A decrement by a thread belonging to the current phase is not equivalent to a decrement by a thread belonging to the next phase.
 In order to distinguish between these transactions, we either need to keep different counters for adjacent phases of the barrier or force threads to wait until the current phase is fully resolved before performing a decrement.
+
+<!--slider both-->
 
 <!--slider split-->
 
